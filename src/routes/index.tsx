@@ -1,24 +1,96 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { About } from "@/components/About";
+import { Services } from "@/components/Services";
+import { Instructors } from "@/components/Instructors";
+import { Vehicles } from "@/components/Vehicles";
+import { WhyUs } from "@/components/WhyUs";
+import { Process } from "@/components/Process";
+import { Gallery } from "@/components/Gallery";
+import { Reviews } from "@/components/Reviews";
+import { Faq } from "@/components/Faq";
+import { CtaBand } from "@/components/CtaBand";
+import { Contact } from "@/components/Contact";
+import { Footer } from "@/components/Footer";
+import { siteSettings, contactInfo, faqItems } from "@/content/site";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: siteSettings.seo.title },
+      { name: "description", content: siteSettings.seo.description },
+      { property: "og:title", content: siteSettings.seo.ogTitle },
+      { property: "og:description", content: siteSettings.seo.ogDescription },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { property: "og:locale", content: "hu_RO" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "DrivingSchool",
+          name: siteSettings.name,
+          description: siteSettings.seo.description,
+          telephone: contactInfo.phone.display,
+          email: contactInfo.email.display,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: contactInfo.address.street,
+            addressLocality: "Târgu Secuiesc",
+            postalCode: contactInfo.address.postalCode,
+            addressCountry: "RO",
+          },
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              opens: "09:00",
+              closes: "17:00",
+            },
+          ],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqItems.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        }),
+      },
+    ],
+  }),
+  component: HomePage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function HomePage() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Services />
+        <Instructors />
+        <Vehicles />
+        <WhyUs />
+        <Process />
+        <Gallery />
+        <Reviews />
+        <Faq />
+        <CtaBand />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 }
