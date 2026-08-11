@@ -81,6 +81,7 @@ export const navigation: NavItem[] = [
   { label: "Gépkocsik", href: "#autovehicule" },
   { label: "Galéria", href: "#galerie" },
   { label: "Vélemények", href: "#recenzii" },
+  { label: "Hírek", href: "#hirek" },
   { label: "Kérdések", href: "#intrebari" },
   { label: "Kapcsolat", href: "#contact" },
 ];
