@@ -2,19 +2,19 @@ import { Fuel, Cog } from "lucide-react";
 import { vehicles, type Vehicle } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
+import { SiteImage } from "./SiteImage";
+
 
 export function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
   return (
     <article className="group h-full overflow-hidden rounded-3xl border border-primary-foreground/10 bg-primary-foreground/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-accent/40">
       <div className="overflow-hidden">
-        <img
-          src={vehicle.image.src}
-          alt={vehicle.image.alt}
-          width={1200}
-          height={800}
-          loading="lazy"
-          className="aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+        <SiteImage
+          image={vehicle.image}
+          ratioClassName="aspect-[3/2] w-full"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
+
       </div>
       <div className="p-7">
         <h3 className="font-display text-lg font-semibold text-primary-foreground">

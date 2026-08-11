@@ -1,6 +1,8 @@
 import { galleryContent, galleryImages } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
+import { SiteImage } from "./SiteImage";
+
 
 export function Gallery() {
   return (
@@ -14,14 +16,12 @@ export function Gallery() {
         {galleryImages.map((image, i) => (
           <Reveal key={image.src} delay={(i % 3) * 70}>
             <figure className="group h-full overflow-hidden rounded-2xl bg-card shadow-card">
-              <img
-                src={image.src}
-                alt={image.alt}
-                width={1000}
-                height={800}
-                loading="lazy"
-                className="aspect-[5/4] w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+              <SiteImage
+                image={image}
+                ratioClassName="aspect-[5/4] w-full"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
               />
+
 
             </figure>
           </Reveal>
