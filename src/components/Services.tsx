@@ -1,16 +1,18 @@
 import { ArrowRight } from "lucide-react";
-import { services } from "@/data/content";
+import { useSiteContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { Icon } from "./Icon";
 
 export function Services() {
+  const { services, servicesContent } = useSiteContent();
+
   return (
     <Section id="servicii" tone="surface">
       <SectionHeading
-        eyebrow="Szolgáltatások"
-        title="Képzési kínálatunk"
-        subtitle="Az első érdeklődéstől a sikeres vizsgáig minden lépésben melletted vagyunk."
+        eyebrow={servicesContent.eyebrow}
+        title={servicesContent.title}
+        subtitle={servicesContent.subtitle}
         align="center"
       />
       <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

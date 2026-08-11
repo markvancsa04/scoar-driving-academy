@@ -1,9 +1,11 @@
-import { advantages, advantagesContent } from "@/data/content";
+import { useSiteContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { Icon } from "./Icon";
 
 export function WhyUs() {
+  const { advantages, advantagesContent } = useSiteContent();
+
   return (
     <Section tone="surface">
       <SectionHeading

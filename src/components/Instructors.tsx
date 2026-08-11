@@ -1,9 +1,10 @@
-import { instructors, type Instructor } from "@/data/content";
+import { ArrowRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { useSiteContent, type Instructor } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { ButtonLink } from "./Button";
 import { SiteImage } from "./SiteImage";
-
 
 export function InstructorCard({ instructor }: { instructor: Instructor }) {
   return (
@@ -14,7 +15,6 @@ export function InstructorCard({ instructor }: { instructor: Instructor }) {
           ratioClassName="h-72 w-full"
           className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
-
         <span className="absolute left-4 top-4 rounded-full bg-background/90 px-3 py-1 text-xs font-semibold backdrop-blur">
           {instructor.experience}
         </span>
@@ -29,7 +29,7 @@ export function InstructorCard({ instructor }: { instructor: Instructor }) {
               key={c}
               className="rounded-full bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground"
             >
-              {c} kategória
+              {c}
             </span>
           ))}
         </div>
@@ -43,21 +43,48 @@ export function InstructorCard({ instructor }: { instructor: Instructor }) {
   );
 }
 
+export function InstructorGrid({ instructors }: { instructors: Instructor[] }) {
+  return (
+    <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {instructors.map((instructor, i) => (
+        <Reveal as="li" key={instructor.id} delay={(i % 3) * 80} className="h-full">
+          <InstructorCard instructor={instructor} />
+        </Reveal>
+      ))}
+    </ul>
+  );
+}
+
 export function Instructors() {
+  const { instructors, instructorsContent } = useSiteContent();
+  const featured = instructors.filter((i) => i.featured);
+  const shown = (featured.length > 0 ? featured : instructors).slice(0, 3);
+  const hasMore = instructors.length > shown.length;
+
   return (
     <Section id="instructori">
       <SectionHeading
-        eyebrow="Oktatók"
-        title="Az oktatóink"
-        subtitle="Tapasztalt, türelmes szakemberek, akik a te tempódhoz igazodnak."
+        eyebrow={instructorsContent.eyebrow}
+        title={instructorsContent.title}
+        subtitle={instructorsContent.subtitle}
       />
-      <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {instructors.map((instructor, i) => (
-          <Reveal as="li" key={instructor.id} delay={(i % 3) * 80} className="h-full">
-            <InstructorCard instructor={instructor} />
-          </Reveal>
-        ))}
-      </ul>
+      <div className="mt-14">
+        <InstructorGrid instructors={shown} />
+      </div>
+      {hasMore && (
+        <Reveal className="mt-10 flex justify-center">
+          <Link
+            to="/oktatoink"
+            className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold shadow-card transition-colors hover:border-accent hover:text-accent"
+          >
+            {instructorsContent.moreCta.label}
+            <ArrowRight
+              className="h-4 w-4 transition-transform group-hover:translate-x-1"
+              aria-hidden="true"
+            />
+          </Link>
+        </Reveal>
+      )}
     </Section>
   );
 }

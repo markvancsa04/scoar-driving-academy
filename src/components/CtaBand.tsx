@@ -1,9 +1,11 @@
 import { Phone } from "lucide-react";
-import { ctaContent, contactInfo } from "@/data/content";
+import { useSiteContent } from "@/data/content";
 import { ButtonLink } from "./Button";
 import { Reveal } from "./Reveal";
 
 export function CtaBand() {
+  const { ctaContent, contactInfo } = useSiteContent();
+
   return (
     <section className="bg-primary py-20 text-primary-foreground sm:py-24">
       <div className="container-page">

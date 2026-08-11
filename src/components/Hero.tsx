@@ -1,21 +1,23 @@
-import { heroContent, heroHighlights } from "@/data/content";
+import { useSiteContent } from "@/data/content";
 import { ButtonLink } from "./Button";
 import { Icon } from "./Icon";
 import { Reveal } from "./Reveal";
 import { SiteImage } from "./SiteImage";
 
 export function Hero() {
+  const { heroContent, heroHighlights } = useSiteContent();
+
   return (
     <section id="acasa" className="relative isolate overflow-hidden bg-primary">
       <SiteImage
         image={heroContent.image}
         loading="eager"
         ratioClassName="absolute inset-0 -z-20 h-full w-full"
-        className="object-cover object-center"
+        className="object-cover object-[60%_center] sm:object-center"
       />
 
       <div
-        className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,oklch(0.22_0.03_255/0.94)_0%,oklch(0.22_0.03_255/0.78)_45%,oklch(0.22_0.03_255/0.35)_100%)]"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.22_0.03_255/0.92)_0%,oklch(0.22_0.03_255/0.72)_55%,oklch(0.22_0.03_255/0.85)_100%)] sm:bg-[linear-gradient(100deg,oklch(0.22_0.03_255/0.94)_0%,oklch(0.22_0.03_255/0.78)_45%,oklch(0.22_0.03_255/0.35)_100%)]"
         aria-hidden="true"
       />
 
@@ -58,11 +60,7 @@ export function Hero() {
       <div className="relative border-t border-primary-foreground/10 bg-secondary/60 backdrop-blur">
         <div className="container-page grid gap-px sm:grid-cols-2 lg:grid-cols-4">
           {heroHighlights.map((item, i) => (
-            <Reveal
-              key={item.title}
-              delay={i * 70}
-              className="flex gap-4 py-7 sm:pr-8 lg:py-9"
-            >
+            <Reveal key={item.title} delay={i * 70} className="flex gap-4 py-7 sm:pr-8 lg:py-9">
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent/15 text-accent">
                 <Icon name={item.icon} className="h-5 w-5" aria-hidden="true" />
               </span>

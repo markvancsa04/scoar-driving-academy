@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { faqContent, faqItems } from "@/data/content";
+import { useSiteContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { cn } from "@/lib/utils";
 
 export function Faq() {
+  const { faqContent, faqItems } = useSiteContent();
   const [open, setOpen] = useState<number | null>(0);
 
   return (
