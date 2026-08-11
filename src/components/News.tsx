@@ -1,10 +1,12 @@
 import { CalendarDays, ArrowRight } from "lucide-react";
-import { newsContent, newsItems } from "@/data/content";
+import { useSiteContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { SiteImage } from "./SiteImage";
 
 export function News() {
+  const { newsContent, newsItems } = useSiteContent();
+
   return (
     <Section id="hirek">
       <SectionHeading

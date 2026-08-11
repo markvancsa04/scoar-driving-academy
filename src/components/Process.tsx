@@ -1,9 +1,11 @@
-import { processContent, processSteps } from "@/data/content";
+import { useSiteContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { Icon } from "./Icon";
 
 export function Process() {
+  const { processContent, processSteps } = useSiteContent();
+
   return (
     <Section>
       <SectionHeading

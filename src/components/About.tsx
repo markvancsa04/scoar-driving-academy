@@ -1,11 +1,12 @@
 import { Check } from "lucide-react";
-import { aboutContent } from "@/data/content";
+import { useSiteContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { SiteImage } from "./SiteImage";
 
-
 export function About() {
+  const { aboutContent } = useSiteContent();
+
   return (
     <Section id="despre-noi">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -16,7 +17,6 @@ export function About() {
               ratioClassName="h-[380px] w-full sm:h-[520px]"
               className="object-cover"
             />
-
           </div>
           <div className="mt-4 grid grid-cols-2 gap-4 sm:absolute sm:-bottom-8 sm:-left-6 sm:mt-0 sm:w-[70%] sm:grid-cols-2">
             {aboutContent.stats.slice(0, 2).map((stat) => (

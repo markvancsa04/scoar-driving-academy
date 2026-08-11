@@ -1,6 +1,6 @@
 import type { ImgHTMLAttributes } from "react";
 import { ImageOff } from "lucide-react";
-import type { ImageAsset } from "@/content/types";
+import type { ImageAsset } from "@/data/content";
 import { resolveMediaUrl } from "@/lib/media";
 import { cn } from "@/lib/utils";
 

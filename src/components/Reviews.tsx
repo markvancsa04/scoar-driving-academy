@@ -1,9 +1,8 @@
 import { Star, Quote } from "lucide-react";
-import { testimonials, testimonialsContent, type Testimonial } from "@/data/content";
+import { useSiteContent, type Testimonial } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { SiteImage } from "./SiteImage";
-
 
 export function ReviewCard({ review }: { review: Testimonial }) {
   return (
@@ -13,9 +12,7 @@ export function ReviewCard({ review }: { review: Testimonial }) {
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}
-            className={
-              i < review.rating ? "h-4 w-4 fill-accent text-accent" : "h-4 w-4 text-border"
-            }
+            className={i < review.rating ? "h-4 w-4 fill-accent text-accent" : "h-4 w-4 text-border"}
             aria-hidden="true"
           />
         ))}
@@ -28,7 +25,6 @@ export function ReviewCard({ review }: { review: Testimonial }) {
             ratioClassName="h-10 w-10 shrink-0 rounded-full"
             className="object-cover"
           />
-
         ) : (
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground">
             {review.name.charAt(0)}
@@ -46,6 +42,8 @@ export function ReviewCard({ review }: { review: Testimonial }) {
 }
 
 export function Reviews() {
+  const { testimonials, testimonialsContent } = useSiteContent();
+
   return (
     <Section id="recenzii">
       <SectionHeading

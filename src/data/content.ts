@@ -11,102 +11,92 @@
  *  wrapping a query) returning the exact same shapes from
  *  `src/content/types.ts`. No UI component needs to be rewritten.
  *
- *  Example future implementation:
- *
- *    export async function getInstructors(): Promise<Instructor[]> {
- *      const { data, error } = await supabase
- *        .from("instructors")
- *        .select("*")
- *        .order("sort_order");
- *      if (error) throw error;
- *      return data.map(mapInstructorRow);
- *    }
- *
- *  Note: getters are intentionally plain (synchronous) for now so the
- *  site stays fully static and SSR-safe. Swapping them for async
- *  versions consumed via route loaders + TanStack Query is a local
- *  change inside the components that read them.
+ *  Bilingual model
+ *  ---------------
+ *  The raw content stores every translatable string as `{ hu, ro }`.
+ *  `getSiteContent(language)` resolves the whole tree for the active
+ *  language, so components always receive plain strings.
  * =============================================================
  */
 
+import { useMemo } from "react";
 import * as site from "@/content/site";
+import { DEFAULT_LANGUAGE, resolveContent, useLanguage } from "@/lib/i18n";
 import type {
-  FaqItem,
-  ImageAsset,
-  Instructor,
-  NavItem,
-  NewsItem,
-  Service,
-  SiteSettings,
-  Testimonial,
-  Vehicle,
+  FaqItem as RawFaqItem,
+  ImageAsset as RawImageAsset,
+  Instructor as RawInstructor,
+  Language,
+  NavItem as RawNavItem,
+  NewsItem as RawNewsItem,
+  Resolved,
+  Service as RawService,
+  Testimonial as RawTestimonial,
+  Vehicle as RawVehicle,
 } from "@/content/types";
 
-export const getSiteSettings = (): SiteSettings => site.siteSettings;
-export const getNavigation = (): NavItem[] => site.navigation;
-export const getNavCta = () => site.navCta;
-
-export const getHeroContent = () => site.heroContent;
-export const getHeroHighlights = () => site.heroHighlights;
-export const getAboutContent = () => site.aboutContent;
-export const getAdvantages = () => site.advantages;
-export const getAdvantagesContent = () => site.advantagesContent;
-export const getProcessContent = () => site.processContent;
-export const getProcessSteps = () => site.processSteps;
-export const getCtaContent = () => site.ctaContent;
-export const getFooterContent = () => site.footerContent;
-
-export const getServices = (): Service[] => site.services;
-export const getInstructors = (): Instructor[] => site.instructors;
-export const getVehicles = (): Vehicle[] => site.vehicles;
-export const getTestimonials = (): Testimonial[] => site.testimonials;
-export const getTestimonialsContent = () => site.testimonialsContent;
-export const getFaqItems = (): FaqItem[] => site.faqItems;
-export const getFaqContent = () => site.faqContent;
-export const getNews = (): NewsItem[] => site.newsItems;
-export const getNewsContent = () => site.newsContent;
-export const getGalleryImages = (): ImageAsset[] => site.galleryImages;
-export const getGalleryContent = () => site.galleryContent;
-
-export const getContactInfo = () => site.contactInfo;
-export const getSocialLinks = () => site.socialLinks;
+export type { Language, Resolved } from "@/content/types";
 
 /* ------------------------------------------------------------------ */
-/* Convenience re-exports                                              */
+/* View types — what components actually receive (plain strings)       */
 /* ------------------------------------------------------------------ */
-/**
- * Components import content from this module (never from
- * `src/content/site.ts`). These named exports are the current, static
- * implementation of the getters above. When Supabase is connected, the
- * components move to the async getters / route loaders and these
- * re-exports are removed — the import path stays the same.
- */
-export type * from "@/content/types";
 
-export const {
-  siteSettings,
-  navigation,
-  navCta,
-  heroContent,
-  heroHighlights,
-  aboutContent,
-  advantages,
-  advantagesContent,
-  services,
-  instructors,
-  vehicles,
-  processContent,
-  processSteps,
-  galleryContent,
-  galleryImages,
-  testimonials,
-  testimonialsContent,
-  faqContent,
-  faqItems,
-  newsContent,
-  newsItems,
-  ctaContent,
-  contactInfo,
-  socialLinks,
-  footerContent,
-} = site;
+export type ImageAsset = Resolved<RawImageAsset>;
+export type NavItem = Resolved<RawNavItem>;
+export type Service = Resolved<RawService>;
+export type Instructor = Resolved<RawInstructor>;
+export type Vehicle = Resolved<RawVehicle>;
+export type Testimonial = Resolved<RawTestimonial>;
+export type FaqItem = Resolved<RawFaqItem>;
+export type NewsItem = Resolved<RawNewsItem>;
+
+/* ------------------------------------------------------------------ */
+/* Raw content tree (Supabase replaces this object, nothing else)      */
+/* ------------------------------------------------------------------ */
+
+const rawContent = {
+  siteSettings: site.siteSettings,
+  navigation: site.navigation,
+  navCta: site.navCta,
+  heroContent: site.heroContent,
+  heroHighlights: site.heroHighlights,
+  aboutContent: site.aboutContent,
+  servicesContent: site.servicesContent,
+  services: site.services,
+  instructorsContent: site.instructorsContent,
+  instructors: site.instructors,
+  vehiclesContent: site.vehiclesContent,
+  vehicles: site.vehicles,
+  advantagesContent: site.advantagesContent,
+  advantages: site.advantages,
+  processContent: site.processContent,
+  processSteps: site.processSteps,
+  galleryContent: site.galleryContent,
+  galleryImages: site.galleryImages,
+  testimonialsContent: site.testimonialsContent,
+  testimonials: site.testimonials,
+  faqContent: site.faqContent,
+  faqItems: site.faqItems,
+  newsContent: site.newsContent,
+  newsItems: site.newsItems,
+  ctaContent: site.ctaContent,
+  contactInfo: site.contactInfo,
+  socialLinks: site.socialLinks,
+  footerContent: site.footerContent,
+};
+
+export type SiteContent = Resolved<typeof rawContent>;
+
+/** Resolves the whole content tree for a language. */
+export function getSiteContent(language: Language = DEFAULT_LANGUAGE): SiteContent {
+  return resolveContent(rawContent, language);
+}
+
+/** Content in the default language — used for SSR metadata (head, JSON-LD). */
+export const defaultContent = getSiteContent(DEFAULT_LANGUAGE);
+
+/** The hook every component uses to read content. */
+export function useSiteContent(): SiteContent {
+  const { language } = useLanguage();
+  return useMemo(() => getSiteContent(language), [language]);
+}

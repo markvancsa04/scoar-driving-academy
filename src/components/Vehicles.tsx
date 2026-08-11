@@ -1,9 +1,8 @@
 import { Fuel, Cog } from "lucide-react";
-import { vehicles, type Vehicle } from "@/data/content";
+import { useSiteContent, type Vehicle } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { SiteImage } from "./SiteImage";
-
 
 export function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
   return (
@@ -14,7 +13,6 @@ export function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
           ratioClassName="aspect-[3/2] w-full"
           className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
-
       </div>
       <div className="p-7">
         <h3 className="font-display text-lg font-semibold text-primary-foreground">
@@ -49,12 +47,14 @@ export function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
 }
 
 export function Vehicles() {
+  const { vehicles, vehiclesContent } = useSiteContent();
+
   return (
     <Section id="autovehicule" tone="dark">
       <SectionHeading
-        eyebrow="Gépkocsik"
-        title="Oktatóautóink"
-        subtitle="Karbantartott, biztonságos gépkocsik, amelyekkel könnyű megtanulni vezetni."
+        eyebrow={vehiclesContent.eyebrow}
+        title={vehiclesContent.title}
+        subtitle={vehiclesContent.subtitle}
         invert
       />
       <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

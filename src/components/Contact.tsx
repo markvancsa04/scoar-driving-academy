@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { MapPin, Phone, Mail, Clock, ExternalLink } from "lucide-react";
-import { contactInfo, socialLinks } from "@/data/content";
+import { useSiteContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { Button } from "./Button";
@@ -10,6 +10,7 @@ const fieldClass =
   "w-full rounded-xl border border-input bg-card px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-accent focus:ring-2 focus:ring-accent/20";
 
 export function Contact() {
+  const { contactInfo, socialLinks } = useSiteContent();
   const [sent, setSent] = useState(false);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -34,7 +35,7 @@ export function Contact() {
               <li className="flex gap-4">
                 <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
                 <div className="min-w-0">
-                  <div className="font-medium">Cím</div>
+                  <div className="font-medium">{contactInfo.labels.address}</div>
                   <address className="not-italic text-muted-foreground">
                     {contactInfo.address.full}
                   </address>
@@ -43,7 +44,7 @@ export function Contact() {
               <li className="flex gap-4">
                 <Phone className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
                 <div className="min-w-0">
-                  <div className="font-medium">Telefon</div>
+                  <div className="font-medium">{contactInfo.labels.phone}</div>
                   <a
                     href={contactInfo.phone.href}
                     className="text-muted-foreground transition-colors hover:text-accent"
@@ -55,7 +56,7 @@ export function Contact() {
               <li className="flex gap-4">
                 <Mail className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
                 <div className="min-w-0">
-                  <div className="font-medium">E-mail</div>
+                  <div className="font-medium">{contactInfo.labels.email}</div>
                   <a
                     href={contactInfo.email.href}
                     className="break-all text-muted-foreground transition-colors hover:text-accent"
@@ -67,7 +68,7 @@ export function Contact() {
               <li className="flex gap-4">
                 <Clock className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
                 <div className="min-w-0 flex-1">
-                  <div className="font-medium">Nyitvatartás</div>
+                  <div className="font-medium">{contactInfo.labels.openingHours}</div>
                   <dl className="mt-1 space-y-1 text-muted-foreground">
                     {contactInfo.openingHours.map((row) => (
                       <div key={row.day} className="flex justify-between gap-4">
@@ -80,26 +81,28 @@ export function Contact() {
               </li>
             </ul>
 
-            <div className="mt-7 flex flex-wrap gap-2 border-t border-border pt-6">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label={social.label}
-                  className="grid h-10 w-10 place-items-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
-                >
-                  <Icon name={social.icon} className="h-4 w-4" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
+            {socialLinks.length > 0 && (
+              <div className="mt-7 flex flex-wrap gap-2 border-t border-border pt-6">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label={social.label}
+                    className="grid h-10 w-10 place-items-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+                  >
+                    <Icon name={social.icon} className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="overflow-hidden rounded-3xl border border-border shadow-card">
             <iframe
               src={contactInfo.mapEmbedUrl}
-              title={`${contactInfo.businessName} térkép`}
+              title={`${contactInfo.businessName} — ${contactInfo.labels.map}`}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="h-64 w-full border-0"
@@ -111,7 +114,7 @@ export function Contact() {
             rel="noreferrer noopener"
             className="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-accent"
           >
-            Útvonaltervezés
+            {contactInfo.labels.directions}
             <ExternalLink className="h-4 w-4" aria-hidden="true" />
           </a>
         </Reveal>
