@@ -39,7 +39,7 @@ export function Navbar() {
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="mx-auto w-full max-w-[80rem] px-5 min-[1700px]:max-w-[94rem]">
+      <div className="container-page">
         <div className="grid h-20 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 xl:grid-cols-[auto_minmax(0,1fr)_auto]">
           <Link to="/" hash="acasa" className="flex min-w-0 items-center gap-3">
             <span
@@ -84,7 +84,7 @@ export function Navbar() {
                 className={cn(
                   "whitespace-nowrap rounded-full px-2 py-2 text-[0.78rem] font-medium transition-colors 2xl:px-3 2xl:text-sm",
                   // Secondary links only appear once there is room for them.
-                  index >= 5 && index < navigation.length - 1 && "hidden min-[1700px]:inline-flex",
+                  index >= 5 && index < navigation.length - 1 && "hidden",
                   solid
                     ? "text-muted-foreground hover:bg-muted hover:text-foreground"
                     : "text-primary-foreground/80 hover:bg-primary-foreground/10 hover:text-primary-foreground",
