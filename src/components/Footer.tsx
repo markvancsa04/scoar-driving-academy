@@ -1,30 +1,33 @@
 import { MapPin, Phone, Mail } from "lucide-react";
-import {
-  siteSettings,
-  navigation,
-  services,
-  contactInfo,
-  socialLinks,
-  footerContent,
-} from "@/data/content";
+import { Link } from "@tanstack/react-router";
+import { useSiteContent } from "@/data/content";
 import { Icon } from "./Icon";
+import { SiteImage } from "./SiteImage";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Footer() {
+  const { siteSettings, navigation, services, contactInfo, socialLinks, footerContent } =
+    useSiteContent();
+
   return (
     <footer className="bg-secondary text-primary-foreground">
       <div className="container-page py-16">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div>
             <div className="flex items-center gap-3">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent font-display text-sm font-bold text-accent-foreground">
-                AS
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary-foreground p-1.5">
+                <SiteImage
+                  image={siteSettings.logo}
+                  ratioClassName="h-full w-full"
+                  className="object-contain"
+                />
               </span>
               <span className="font-display text-base font-bold">{siteSettings.name}</span>
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-primary-foreground/60">
               {footerContent.description}
             </p>
-            <div className="mt-6 flex gap-2">
+            <div className="mt-6 flex flex-wrap items-center gap-2">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -37,6 +40,7 @@ export function Footer() {
                   <Icon name={social.icon} className="h-4 w-4" aria-hidden="true" />
                 </a>
               ))}
+              <LanguageSwitcher onDark />
             </div>
           </div>
 
@@ -47,12 +51,13 @@ export function Footer() {
             <ul className="mt-5 space-y-2.5">
               {navigation.map((item) => (
                 <li key={item.href}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to="/"
+                    hash={item.href.replace("#", "")}
                     className="text-sm text-primary-foreground/60 transition-colors hover:text-accent"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -65,12 +70,13 @@ export function Footer() {
             <ul className="mt-5 space-y-2.5">
               {services.map((service) => (
                 <li key={service.id}>
-                  <a
-                    href="#servicii"
+                  <Link
+                    to="/"
+                    hash="servicii"
                     className="text-sm text-primary-foreground/60 transition-colors hover:text-accent"
                   >
                     {service.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

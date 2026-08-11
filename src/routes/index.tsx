@@ -14,7 +14,9 @@ import { News } from "@/components/News";
 import { CtaBand } from "@/components/CtaBand";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { siteSettings, contactInfo, faqItems } from "@/data/content";
+import { defaultContent } from "@/data/content";
+
+const { siteSettings, contactInfo, faqItems } = defaultContent;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,6 +28,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
       { property: "og:locale", content: "hu_RO" },
+      { property: "og:locale:alternate", content: "ro_RO" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/" }],
