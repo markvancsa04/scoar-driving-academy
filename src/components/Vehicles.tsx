@@ -1,5 +1,5 @@
 import { Fuel, Cog } from "lucide-react";
-import { vehicles, type Vehicle } from "@/content/site";
+import { vehicles, type Vehicle } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 

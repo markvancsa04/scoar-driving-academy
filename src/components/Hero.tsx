@@ -1,4 +1,4 @@
-import { heroContent, heroHighlights } from "@/content/site";
+import { heroContent, heroHighlights } from "@/data/content";
 import { ButtonLink } from "./Button";
 import { Icon } from "./Icon";
 import { Reveal } from "./Reveal";

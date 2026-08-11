@@ -1,4 +1,4 @@
-import { instructors, type Instructor } from "@/content/site";
+import { instructors, type Instructor } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { ButtonLink } from "./Button";

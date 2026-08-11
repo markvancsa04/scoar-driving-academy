@@ -1,4 +1,4 @@
-import { processContent, processSteps } from "@/content/site";
+import { processContent, processSteps } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { Icon } from "./Icon";

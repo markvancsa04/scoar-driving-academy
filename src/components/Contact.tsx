@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { MapPin, Phone, Mail, Clock, ExternalLink } from "lucide-react";
-import { contactInfo, socialLinks } from "@/content/site";
+import { contactInfo, socialLinks } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { Button } from "./Button";

@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { aboutContent } from "@/content/site";
+import { aboutContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 

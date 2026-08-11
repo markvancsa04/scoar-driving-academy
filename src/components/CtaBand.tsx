@@ -1,5 +1,5 @@
 import { Phone } from "lucide-react";
-import { ctaContent, contactInfo } from "@/content/site";
+import { ctaContent, contactInfo } from "@/data/content";
 import { ButtonLink } from "./Button";
 import { Reveal } from "./Reveal";
 

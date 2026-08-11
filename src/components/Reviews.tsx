@@ -1,5 +1,5 @@
 import { Star, Quote } from "lucide-react";
-import { testimonials, testimonialsContent, type Testimonial } from "@/content/site";
+import { testimonials, testimonialsContent, type Testimonial } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 

@@ -1,4 +1,4 @@
-import { galleryContent, galleryImages } from "@/content/site";
+import { galleryContent, galleryImages } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 
