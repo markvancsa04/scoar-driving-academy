@@ -100,13 +100,14 @@ export function Navbar() {
             <a
               href={contactInfo.phone.href}
               className={cn(
-                "hidden items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold transition-colors sm:inline-flex xl:hidden 2xl:inline-flex",
+                "hidden items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold transition-colors sm:inline-flex xl:hidden",
                 solid ? "text-foreground hover:text-accent" : "text-primary-foreground hover:text-accent",
               )}
             >
               <Phone className="h-4 w-4" aria-hidden="true" />
               {contactInfo.phone.display}
             </a>
+
             <LanguageSwitcher onDark={!solid} className="hidden sm:inline-flex" />
             <ButtonLink href={navCta.href} variant="accent" className="hidden md:inline-flex">
               {navCta.label}
