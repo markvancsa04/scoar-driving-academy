@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { CtaBand } from "@/components/CtaBand";
 import { InstructorGrid } from "@/components/Instructors";
 import { Section, SectionHeading } from "@/components/Section";
-import { useSiteContent, defaultContent } from "@/data/content";
+import { useSiteContent } from "@/data/content";
 
 export const Route = createFileRoute("/oktatoink")({
   head: () => ({
@@ -65,6 +65,3 @@ function InstructorsPage() {
     </div>
   );
 }
-
-/** Static fallback used by prerendering when no language is selected yet. */
-export const fallbackInstructorCount = defaultContent.instructors.length;
