@@ -51,11 +51,14 @@ export type * from "./types";
 /* 1. Site settings & SEO                                              */
 /* ------------------------------------------------------------------ */
 
-export const siteSettings = {
+export const siteSettings: SiteSettings = {
   name: "AUTOSISKOLA SCOBAR",
   shortName: "SCOBAR",
   tagline: "Autósiskola Kézdivásárhelyen",
   locale: "hu-RO",
+  /** Szerkeszthető — a lábléc szerzői jogi éve. */
+  copyrightYear: 2026,
+
   seo: {
     title: "AUTOSISKOLA SCOBAR — Autósiskola Kézdivásárhelyen | B kategória",
     description:
