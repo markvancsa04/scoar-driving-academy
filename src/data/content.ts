@@ -70,3 +70,43 @@ export const getGalleryContent = () => site.galleryContent;
 
 export const getContactInfo = () => site.contactInfo;
 export const getSocialLinks = () => site.socialLinks;
+
+/* ------------------------------------------------------------------ */
+/* Convenience re-exports                                              */
+/* ------------------------------------------------------------------ */
+/**
+ * Components import content from this module (never from
+ * `src/content/site.ts`). These named exports are the current, static
+ * implementation of the getters above. When Supabase is connected, the
+ * components move to the async getters / route loaders and these
+ * re-exports are removed — the import path stays the same.
+ */
+export type * from "@/content/types";
+
+export const {
+  siteSettings,
+  navigation,
+  navCta,
+  heroContent,
+  heroHighlights,
+  aboutContent,
+  advantages,
+  advantagesContent,
+  services,
+  instructors,
+  vehicles,
+  processContent,
+  processSteps,
+  galleryContent,
+  galleryImages,
+  testimonials,
+  testimonialsContent,
+  faqContent,
+  faqItems,
+  newsContent,
+  newsItems,
+  ctaContent,
+  contactInfo,
+  socialLinks,
+  footerContent,
+} = site;
