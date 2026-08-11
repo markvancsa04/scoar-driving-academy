@@ -29,68 +29,36 @@ import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
 
 /* ------------------------------------------------------------------ */
-/* Types                                                               */
+/* Types — defined in src/content/types.ts (Supabase-ready shapes)     */
 /* ------------------------------------------------------------------ */
 
-export type IconName = string;
+import type {
+  FaqItem,
+  ImageAsset,
+  Instructor,
+  NavItem,
+  NewsItem,
+  Service,
+  SiteSettings,
+  Testimonial,
+  Vehicle,
+} from "./types";
 
-export interface NavItem {
-  label: string;
-  href: string;
-}
+export type * from "./types";
 
-export interface ImageAsset {
-  src: string;
-  alt: string;
-}
-
-export interface Service {
-  id: string;
-  icon: IconName;
-  title: string;
-  description: string;
-  cta?: { label: string; href: string };
-}
-
-export interface Instructor {
-  id: string;
-  name: string;
-  role: string;
-  bio: string;
-  experience: string;
-  categories: string[];
-  image: ImageAsset;
-  contact?: { label: string; href: string };
-}
-
-export interface Vehicle {
-  id: string;
-  name: string;
-  transmission: string;
-  fuel: string;
-  description: string;
-  specs: { label: string; value: string }[];
-  image: ImageAsset;
-}
-
-export interface Testimonial {
-  id: string;
-  name: string;
-  text: string;
-  rating: number;
-  location?: string;
-  image?: ImageAsset;
-}
 
 /* ------------------------------------------------------------------ */
 /* 1. Site settings & SEO                                              */
 /* ------------------------------------------------------------------ */
 
-export const siteSettings = {
+export const siteSettings: SiteSettings = {
   name: "AUTOSISKOLA SCOBAR",
   shortName: "SCOBAR",
   tagline: "Autósiskola Kézdivásárhelyen",
   locale: "hu-RO",
+  /** Szerkeszthető — a lábléc szerzői jogi éve. */
+  copyrightYear: 2026,
+
   seo: {
     title: "AUTOSISKOLA SCOBAR — Autósiskola Kézdivásárhelyen | B kategória",
     description:
@@ -99,7 +67,7 @@ export const siteSettings = {
     ogDescription:
       "B kategóriás vezetői engedély megszerzése Kézdivásárhelyen tapasztalt oktatókkal és modern gépkocsikkal.",
   },
-} as const;
+};
 
 /* ------------------------------------------------------------------ */
 /* 2. Navigation                                                       */
@@ -113,6 +81,7 @@ export const navigation: NavItem[] = [
   { label: "Gépkocsik", href: "#autovehicule" },
   { label: "Galéria", href: "#galerie" },
   { label: "Vélemények", href: "#recenzii" },
+  { label: "Hírek", href: "#hirek" },
   { label: "Kérdések", href: "#intrebari" },
   { label: "Kapcsolat", href: "#contact" },
 ];
@@ -494,7 +463,7 @@ export const faqContent = {
   subtitle: "Ha nem találod a választ, hívj minket bizalommal.",
 };
 
-export const faqItems = [
+export const faqItems: FaqItem[] = [
   {
     question: "Hogyan tudok beiratkozni?",
     answer:
@@ -536,6 +505,53 @@ export const faqItems = [
       "Kézdivásárhelyen és környékén, a valós vizsgaútvonalakon, valamint gyakorlópályán a manőverek elsajátításához.",
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/* 13. News & announcements                                            */
+/* ------------------------------------------------------------------ */
+
+export const newsContent = {
+  eyebrow: "Hírek",
+  title: "Aktuális hírek és tájékoztatók",
+  subtitle: "Induló csoportok, vizsgaidőpontok és fontos tudnivalók.",
+  emptyLabel: "Jelenleg nincs friss hír. Nézz vissza hamarosan!",
+};
+
+/**
+ * A dátumokat előre formázott szövegként tároljuk (`dateLabel`),
+ * hogy a szerver és a böngésző mindig ugyanazt jelenítse meg.
+ */
+export const newsItems: NewsItem[] = [
+  {
+    id: "hir-1",
+    date: "2026-08-01",
+    dateLabel: "2026. augusztus 1.",
+    category: "Beiratkozás",
+    title: "Új B kategóriás csoport indul szeptemberben",
+    excerpt:
+      "Szeptemberi indulással új elméleti csoportot hirdetünk. A helyek száma korlátozott, jelentkezni telefonon vagy a kapcsolati űrlapon lehet.",
+    cta: { label: "Jelentkezem", href: "#contact" },
+  },
+  {
+    id: "hir-2",
+    date: "2026-07-15",
+    dateLabel: "2026. július 15.",
+    category: "Vizsga",
+    title: "Vizsgafelkészítő szimulációk minden hónapban",
+    excerpt:
+      "A vizsga előtt álló tanulóinknak havonta szervezünk teljes vizsgaszimulációt valós útvonalakon, oktatói értékeléssel.",
+  },
+  {
+    id: "hir-3",
+    date: "2026-06-20",
+    dateLabel: "2026. június 20.",
+    category: "Iskola",
+    title: "Megújult oktatóautó-parkunk",
+    excerpt:
+      "Frissítettük gépkocsijainkat: minden autónk dupla pedállal, klímával és korszerű biztonsági rendszerekkel felszerelt.",
+  },
+];
+
 
 /* ------------------------------------------------------------------ */
 /* 13. Final CTA                                                       */
@@ -611,7 +627,7 @@ export const footerContent = {
   navTitle: "Navigáció",
   servicesTitle: "Szolgáltatások",
   contactTitle: "Kapcsolat",
-  copyright: `© ${new Date().getFullYear()} AUTOSISKOLA SCOBAR. Minden jog fenntartva.`,
+  copyright: `© ${siteSettings.copyrightYear} AUTOSISKOLA SCOBAR. Minden jog fenntartva.`,
   legalLinks: [
     { label: "Adatvédelmi tájékoztató", href: "#contact" },
     { label: "Felhasználási feltételek", href: "#contact" },

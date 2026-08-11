@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { faqContent, faqItems } from "@/content/site";
+import { faqContent, faqItems } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { cn } from "@/lib/utils";

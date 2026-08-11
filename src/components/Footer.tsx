@@ -6,7 +6,7 @@ import {
   contactInfo,
   socialLinks,
   footerContent,
-} from "@/content/site";
+} from "@/data/content";
 import { Icon } from "./Icon";
 
 export function Footer() {

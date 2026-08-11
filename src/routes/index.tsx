@@ -10,10 +10,11 @@ import { Process } from "@/components/Process";
 import { Gallery } from "@/components/Gallery";
 import { Reviews } from "@/components/Reviews";
 import { Faq } from "@/components/Faq";
+import { News } from "@/components/News";
 import { CtaBand } from "@/components/CtaBand";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { siteSettings, contactInfo, faqItems } from "@/content/site";
+import { siteSettings, contactInfo, faqItems } from "@/data/content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -86,6 +87,7 @@ function HomePage() {
         <Process />
         <Gallery />
         <Reviews />
+        <News />
         <Faq />
         <CtaBand />
         <Contact />

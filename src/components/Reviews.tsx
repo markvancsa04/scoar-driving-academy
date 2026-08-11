@@ -1,7 +1,9 @@
 import { Star, Quote } from "lucide-react";
-import { testimonials, testimonialsContent, type Testimonial } from "@/content/site";
+import { testimonials, testimonialsContent, type Testimonial } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
+import { SiteImage } from "./SiteImage";
+
 
 export function ReviewCard({ review }: { review: Testimonial }) {
   return (
@@ -21,14 +23,12 @@ export function ReviewCard({ review }: { review: Testimonial }) {
       <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">“{review.text}”</p>
       <div className="mt-6 flex items-center gap-3 border-t border-border pt-5">
         {review.image ? (
-          <img
-            src={review.image.src}
-            alt={review.image.alt}
-            width={80}
-            height={80}
-            loading="lazy"
-            className="h-10 w-10 shrink-0 rounded-full object-cover"
+          <SiteImage
+            image={review.image}
+            ratioClassName="h-10 w-10 shrink-0 rounded-full"
+            className="object-cover"
           />
+
         ) : (
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground">
             {review.name.charAt(0)}

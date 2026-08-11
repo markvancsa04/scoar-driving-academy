@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { services } from "@/content/site";
+import { services } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { Icon } from "./Icon";

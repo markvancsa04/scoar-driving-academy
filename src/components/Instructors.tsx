@@ -1,20 +1,20 @@
-import { instructors, type Instructor } from "@/content/site";
+import { instructors, type Instructor } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { ButtonLink } from "./Button";
+import { SiteImage } from "./SiteImage";
+
 
 export function InstructorCard({ instructor }: { instructor: Instructor }) {
   return (
     <article className="group h-full overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
       <div className="relative overflow-hidden">
-        <img
-          src={instructor.image.src}
-          alt={instructor.image.alt}
-          width={800}
-          height={800}
-          loading="lazy"
-          className="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+        <SiteImage
+          image={instructor.image}
+          ratioClassName="h-72 w-full"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
+
         <span className="absolute left-4 top-4 rounded-full bg-background/90 px-3 py-1 text-xs font-semibold backdrop-blur">
           {instructor.experience}
         </span>

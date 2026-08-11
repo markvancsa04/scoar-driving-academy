@@ -1,18 +1,19 @@
-import { heroContent, heroHighlights } from "@/content/site";
+import { heroContent, heroHighlights } from "@/data/content";
 import { ButtonLink } from "./Button";
 import { Icon } from "./Icon";
 import { Reveal } from "./Reveal";
+import { SiteImage } from "./SiteImage";
 
 export function Hero() {
   return (
     <section id="acasa" className="relative isolate overflow-hidden bg-primary">
-      <img
-        src={heroContent.image.src}
-        alt={heroContent.image.alt}
-        width={1920}
-        height={1280}
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+      <SiteImage
+        image={heroContent.image}
+        loading="eager"
+        ratioClassName="absolute inset-0 -z-20 h-full w-full"
+        className="object-cover object-center"
       />
+
       <div
         className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,oklch(0.22_0.03_255/0.94)_0%,oklch(0.22_0.03_255/0.78)_45%,oklch(0.22_0.03_255/0.35)_100%)]"
         aria-hidden="true"

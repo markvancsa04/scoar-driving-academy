@@ -1,4 +1,4 @@
-import { advantages, advantagesContent } from "@/content/site";
+import { advantages, advantagesContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { Icon } from "./Icon";
