@@ -29,58 +29,23 @@ import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
 
 /* ------------------------------------------------------------------ */
-/* Types                                                               */
+/* Types — defined in src/content/types.ts (Supabase-ready shapes)     */
 /* ------------------------------------------------------------------ */
 
-export type IconName = string;
+import type {
+  FaqItem,
+  ImageAsset,
+  Instructor,
+  NavItem,
+  NewsItem,
+  Service,
+  SiteSettings,
+  Testimonial,
+  Vehicle,
+} from "./types";
 
-export interface NavItem {
-  label: string;
-  href: string;
-}
+export type * from "./types";
 
-export interface ImageAsset {
-  src: string;
-  alt: string;
-}
-
-export interface Service {
-  id: string;
-  icon: IconName;
-  title: string;
-  description: string;
-  cta?: { label: string; href: string };
-}
-
-export interface Instructor {
-  id: string;
-  name: string;
-  role: string;
-  bio: string;
-  experience: string;
-  categories: string[];
-  image: ImageAsset;
-  contact?: { label: string; href: string };
-}
-
-export interface Vehicle {
-  id: string;
-  name: string;
-  transmission: string;
-  fuel: string;
-  description: string;
-  specs: { label: string; value: string }[];
-  image: ImageAsset;
-}
-
-export interface Testimonial {
-  id: string;
-  name: string;
-  text: string;
-  rating: number;
-  location?: string;
-  image?: ImageAsset;
-}
 
 /* ------------------------------------------------------------------ */
 /* 1. Site settings & SEO                                              */
