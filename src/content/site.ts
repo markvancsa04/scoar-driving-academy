@@ -506,6 +506,53 @@ export const faqItems: FaqItem[] = [
 ];
 
 /* ------------------------------------------------------------------ */
+/* 13. News & announcements                                            */
+/* ------------------------------------------------------------------ */
+
+export const newsContent = {
+  eyebrow: "Hírek",
+  title: "Aktuális hírek és tájékoztatók",
+  subtitle: "Induló csoportok, vizsgaidőpontok és fontos tudnivalók.",
+  emptyLabel: "Jelenleg nincs friss hír. Nézz vissza hamarosan!",
+};
+
+/**
+ * A dátumokat előre formázott szövegként tároljuk (`dateLabel`),
+ * hogy a szerver és a böngésző mindig ugyanazt jelenítse meg.
+ */
+export const newsItems: NewsItem[] = [
+  {
+    id: "hir-1",
+    date: "2026-08-01",
+    dateLabel: "2026. augusztus 1.",
+    category: "Beiratkozás",
+    title: "Új B kategóriás csoport indul szeptemberben",
+    excerpt:
+      "Szeptemberi indulással új elméleti csoportot hirdetünk. A helyek száma korlátozott, jelentkezni telefonon vagy a kapcsolati űrlapon lehet.",
+    cta: { label: "Jelentkezem", href: "#contact" },
+  },
+  {
+    id: "hir-2",
+    date: "2026-07-15",
+    dateLabel: "2026. július 15.",
+    category: "Vizsga",
+    title: "Vizsgafelkészítő szimulációk minden hónapban",
+    excerpt:
+      "A vizsga előtt álló tanulóinknak havonta szervezünk teljes vizsgaszimulációt valós útvonalakon, oktatói értékeléssel.",
+  },
+  {
+    id: "hir-3",
+    date: "2026-06-20",
+    dateLabel: "2026. június 20.",
+    category: "Iskola",
+    title: "Megújult oktatóautó-parkunk",
+    excerpt:
+      "Frissítettük gépkocsijainkat: minden autónk dupla pedállal, klímával és korszerű biztonsági rendszerekkel felszerelt.",
+  },
+];
+
+
+/* ------------------------------------------------------------------ */
 /* 13. Final CTA                                                       */
 /* ------------------------------------------------------------------ */
 
