@@ -67,7 +67,7 @@ export const siteSettings: SiteSettings = {
     ogDescription:
       "B kategóriás vezetői engedély megszerzése Kézdivásárhelyen tapasztalt oktatókkal és modern gépkocsikkal.",
   },
-} as const;
+};
 
 /* ------------------------------------------------------------------ */
 /* 2. Navigation                                                       */
