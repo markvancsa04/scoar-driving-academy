@@ -462,7 +462,7 @@ export const faqContent = {
   subtitle: "Ha nem találod a választ, hívj minket bizalommal.",
 };
 
-export const faqItems = [
+export const faqItems: FaqItem[] = [
   {
     question: "Hogyan tudok beiratkozni?",
     answer:
@@ -579,7 +579,7 @@ export const footerContent = {
   navTitle: "Navigáció",
   servicesTitle: "Szolgáltatások",
   contactTitle: "Kapcsolat",
-  copyright: `© ${new Date().getFullYear()} AUTOSISKOLA SCOBAR. Minden jog fenntartva.`,
+  copyright: `© ${siteSettings.copyrightYear} AUTOSISKOLA SCOBAR. Minden jog fenntartva.`,
   legalLinks: [
     { label: "Adatvédelmi tájékoztató", href: "#contact" },
     { label: "Felhasználási feltételek", href: "#contact" },
