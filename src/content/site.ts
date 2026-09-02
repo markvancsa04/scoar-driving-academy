@@ -553,7 +553,7 @@ export const advantages = [
     icon: "Route",
     title: { hu: "Gyakorlatias képzés", ro: "Pregătire practică" },
     description: {
-      hu: "Valós forgalom, éjszakai és rossz idős vezetés, hogy készen állj mindenre.",
+      hu: "A képzés elméleti felkészítésből és gyakorlati vezetési órákból áll. Az elmélet során átvesszük a vizsgához szükséges teljes tananyagot, a gyakorlaton pedig fokozatosan haladunk a manőverektől a valós forgalomig.",
       ro: "Trafic real, conducere pe timp de noapte și vreme rea, ca să fii pregătit de orice.",
     },
   },
