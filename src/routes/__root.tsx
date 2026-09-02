@@ -77,13 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AUTOSISKOLA SCOBAR — Autósiskola Kézdivásárhelyen" },
+      { title: "SCOBAR AUTÓSISKOLA — Autósiskola Kézdivásárhelyen" },
       {
         name: "description",
         content:
           "B kategóriás jogosítvány Kézdivásárhelyen tapasztalt oktatókkal és modern gépkocsikkal.",
       },
-      { property: "og:site_name", content: "AUTOSISKOLA SCOBAR" },
+      { property: "og:site_name", content: "SCOBAR AUTÓSISKOLA" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#1c2536" },
