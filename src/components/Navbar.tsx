@@ -56,7 +56,7 @@ export function Navbar() {
                 className="object-contain"
               />
             </span>
-            <span className="min-w-0">
+            <span className="min-w-0 hidden xl:block">
               <span
                 className={cn(
                   "block truncate font-display text-[0.95rem] font-bold leading-tight tracking-tight",
