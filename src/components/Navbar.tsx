@@ -64,7 +64,6 @@ export function Navbar() {
               >
                 SCOBAR AUTÓSISKOLA
               </span>
-
             </span>
             <span
               className={cn(
@@ -75,7 +74,6 @@ export function Navbar() {
               {siteSettings.tagline}
             </span>
           </Link>
-
 
           <nav className="hidden min-w-0 items-center justify-center gap-0.5 xl:flex">
             {navigation.map((item, index) => (
@@ -94,52 +92,78 @@ export function Navbar() {
               >
                 {item.label}
               </Link>
-
             ))}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
-            <div className="flex shrink-0 flex-col items-end gap-0.5">
-
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <div className="hidden shrink-0 flex-col items-end gap-0.5 sm:flex">
               {contactInfo.phones.map((entry) => (
                 <a
                   key={entry.href}
                   href={entry.href}
                   className={cn(
-                    "inline-flex items-center gap-1 whitespace-nowrap text-[0.62rem] font-semibold leading-tight transition-colors sm:gap-1.5 sm:text-sm",
+                    "inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold leading-tight transition-colors sm:gap-2",
                     solid
                       ? "text-foreground hover:text-accent"
                       : "text-primary-foreground hover:text-accent",
                   )}
                 >
-                  <Phone className="hidden h-3.5 w-3.5 shrink-0 sm:inline-block sm:h-4 sm:w-4" aria-hidden="true" />
+                  <Phone className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                   {entry.display}
                 </a>
               ))}
             </div>
 
-            <div className="flex flex-col items-end gap-1.5 sm:flex-row sm:items-center sm:gap-2">
+            <span className="hidden sm:block">
               <LanguageSwitcher onDark={!solid} />
-              <ButtonLink href={navCta.href} variant="accent" className="hidden md:inline-flex">
-                {navCta.label}
-              </ButtonLink>
-              <button
-                type="button"
-                onClick={() => setOpen((v) => !v)}
-                aria-label={open ? ui("menuClose") : ui("menuOpen")}
-                aria-expanded={open}
+            </span>
+
+            <ButtonLink href={navCta.href} variant="accent" className="hidden md:inline-flex">
+              {navCta.label}
+            </ButtonLink>
+
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? ui("menuClose") : ui("menuOpen")}
+              aria-expanded={open}
+              className={cn(
+                "grid h-10 w-10 shrink-0 place-items-center rounded-xl border transition-colors sm:h-11 sm:w-11 xl:hidden",
+                solid
+                  ? "border-border text-foreground"
+                  : "border-primary-foreground/25 text-primary-foreground",
+              )}
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile utility row: prominent phones + language switcher */}
+        <div
+          className={cn(
+            "flex items-center justify-between gap-3 pb-3 sm:hidden",
+            solid ? "border-t border-border" : "border-t border-primary-foreground/15",
+          )}
+        >
+          <div className="flex flex-col gap-1">
+            {contactInfo.phones.map((entry) => (
+              <a
+                key={entry.href}
+                href={entry.href}
                 className={cn(
-                  "grid h-10 w-10 shrink-0 place-items-center rounded-xl border transition-colors sm:h-11 sm:w-11 xl:hidden",
+                  "inline-flex items-center gap-2 whitespace-nowrap text-sm font-bold leading-tight transition-colors",
                   solid
-                    ? "border-border text-foreground"
-                    : "border-primary-foreground/25 text-primary-foreground",
+                    ? "text-foreground hover:text-accent"
+                    : "text-primary-foreground hover:text-accent",
                 )}
               >
-                {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </button>
-            </div>
+                <Phone className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                {entry.display}
+              </a>
+            ))}
           </div>
-
+          <LanguageSwitcher onDark={!solid} />
         </div>
       </div>
 
@@ -171,16 +195,6 @@ export function Navbar() {
           >
             {navCta.label}
           </ButtonLink>
-          <div className="mt-4 flex items-center justify-between gap-3">
-            <a
-              href={contactInfo.phone.href}
-              className="inline-flex items-center gap-2 py-2 text-sm font-semibold text-muted-foreground"
-            >
-              <Phone className="h-4 w-4" aria-hidden="true" />
-              {contactInfo.phone.display}
-            </a>
-            <LanguageSwitcher />
-          </div>
         </nav>
       </div>
     </header>
