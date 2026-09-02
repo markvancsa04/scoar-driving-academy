@@ -266,7 +266,7 @@ export const services: Service[] = [
     icon: "SteeringWheel",
     title: { hu: "Gyakorlati vezetés", ro: "Conducere practică" },
     description: {
-      hu: "Városi és országúti órák, manőverek, parkolás és forgalmi helyzetek biztonságos környezetben.",
+      hu: "Városi és országúti órák, manőverek, parkolás és forgalmi helyzetek biztonságos környezetben.Valós forgalmi helyzetek gyakorlása,hogy készen állj mindenre.",
       ro: "Ore în oraș și pe drum național, manevre, parcare și situații de trafic într-un mediu sigur.",
     },
   },
