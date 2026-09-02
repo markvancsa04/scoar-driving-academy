@@ -41,40 +41,40 @@ export function Navbar() {
     >
       <div className="container-page">
         <div className="grid h-20 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 xl:grid-cols-[auto_minmax(0,1fr)_auto]">
-          <Link to="/" hash="acasa" className="flex min-w-0 items-center gap-3">
-            <span
-              className={cn(
-                "grid h-12 shrink-0 place-items-center rounded-xl p-1 transition-colors sm:h-14 xl:h-16",
-                solid ? "bg-card ring-1 ring-border" : "bg-primary-foreground/90 backdrop-blur",
-              )}
-              style={{ aspectRatio: "4 / 1" }}
-            >
-              <SiteImage
-                image={siteSettings.logo}
-                loading="eager"
-                ratioClassName="h-full w-full"
-                className="object-contain"
-              />
-            </span>
-            <span className="min-w-0 hidden xl:block">
+          <Link to="/" hash="acasa" className="flex min-w-0 items-center gap-3 sm:gap-4">
+            <span className="flex min-w-0 flex-col items-start gap-1">
               <span
                 className={cn(
-                  "block truncate font-display text-[0.95rem] font-bold leading-tight tracking-tight",
+                  "grid h-14 w-[224px] shrink-0 place-items-center rounded-xl p-1 transition-colors sm:h-16 sm:w-[256px] xl:h-[72px] xl:w-[288px]",
+                  solid ? "bg-card ring-1 ring-border" : "bg-primary-foreground/90 backdrop-blur",
+                )}
+              >
+                <SiteImage
+                  image={siteSettings.logo}
+                  loading="eager"
+                  ratioClassName="h-full w-full"
+                  className="object-contain"
+                />
+              </span>
+              <span
+                className={cn(
+                  "block whitespace-nowrap font-display text-sm font-bold uppercase leading-tight tracking-tight sm:text-base",
                   solid ? "text-foreground" : "text-primary-foreground",
                 )}
               >
-                {" SCOBAR AUTOSISKOLA"}
-              </span>
-              <span
-                className={cn(
-                  "block truncate text-[0.7rem] uppercase tracking-[0.18em]",
-                  solid ? "text-muted-foreground" : "text-primary-foreground/70",
-                )}
-              >
-                {siteSettings.tagline}
+                SCOBAR AUTÓSISKOLA
               </span>
             </span>
+            <span
+              className={cn(
+                "hidden min-w-0 truncate text-[0.7rem] uppercase tracking-[0.18em] lg:block",
+                solid ? "text-muted-foreground" : "text-primary-foreground/70",
+              )}
+            >
+              {siteSettings.tagline}
+            </span>
           </Link>
+
 
           <nav className="hidden min-w-0 items-center justify-center gap-0.5 xl:flex">
             {navigation.map((item, index) => (
