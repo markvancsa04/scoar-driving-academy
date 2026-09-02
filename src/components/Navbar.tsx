@@ -62,7 +62,7 @@ export function Navbar() {
                   solid ? "text-foreground" : "text-primary-foreground",
                 )}
               >
-                SCOBAR AUTÓSISKOLA
+                       SCOBAR AUTÓSISKOLA
               </span>
             </span>
             <span
