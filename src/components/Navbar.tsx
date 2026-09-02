@@ -44,9 +44,10 @@ export function Navbar() {
           <Link to="/" hash="acasa" className="flex min-w-0 items-center gap-3">
             <span
               className={cn(
-                "grid h-11 w-11 shrink-0 place-items-center rounded-xl p-1.5 transition-colors",
+                "grid h-12 shrink-0 place-items-center rounded-xl p-1 transition-colors sm:h-14 xl:h-16",
                 solid ? "bg-card ring-1 ring-border" : "bg-primary-foreground/90 backdrop-blur",
               )}
+              style={{ aspectRatio: "4 / 1" }}
             >
               <SiteImage
                 image={siteSettings.logo}
