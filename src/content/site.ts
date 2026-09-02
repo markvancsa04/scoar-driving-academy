@@ -529,7 +529,7 @@ export const advantages = [
     icon: "HeartHandshake",
     title: { hu: "Türelmes hozzáállás", ro: "Atitudine răbdătoare" },
     description: {
-      hu: "Nyugodt légkör, bátorító visszajelzés — a hibából is tanulunk.",
+      hu: "Nyugodt légkör, bátorító visszajelzés.",
       ro: "Atmosferă calmă, feedback încurajator — învățăm și din greșeli.",
     },
   },
