@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useCallback, useState, type FormEvent, type FocusEvent } from "react";
 import { MapPin, Phone, Mail, Clock, ExternalLink } from "lucide-react";
 import { useSiteContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
@@ -12,6 +12,29 @@ const fieldClass =
 export function Contact() {
   const { contactInfo, socialLinks } = useSiteContent();
   const [sent, setSent] = useState(false);
+  const form = contactInfo.form;
+
+  /** Localized native validation messages (browser defaults are OS-language). */
+  const applyValidity = useCallback(
+    (el: HTMLInputElement | HTMLTextAreaElement) => {
+      el.setCustomValidity("");
+      if (el.validity.valueMissing) {
+        el.setCustomValidity(form.requiredMessage);
+      } else if (el.validity.typeMismatch) {
+        el.setCustomValidity(
+          el.getAttribute("type") === "email" ? form.invalidEmailMessage : form.invalidPhoneMessage,
+        );
+      }
+    },
+    [form],
+  );
+
+  const validationProps = {
+    onInvalid: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      applyValidity(e.currentTarget),
+    onInput: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => applyValidity(e.currentTarget),
+    onBlur: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => applyValidity(e.currentTarget),
+  };
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -137,6 +160,7 @@ export function Contact() {
                 </label>
                 <input
                   id="name"
+                  {...validationProps}
                   name="name"
                   required
                   placeholder={contactInfo.form.namePlaceholder}
@@ -149,6 +173,7 @@ export function Contact() {
                 </label>
                 <input
                   id="phone"
+                  {...validationProps}
                   name="phone"
                   type="tel"
                   required
@@ -162,6 +187,7 @@ export function Contact() {
                 </label>
                 <input
                   id="email"
+                  {...validationProps}
                   name="email"
                   type="email"
                   placeholder={contactInfo.form.emailPlaceholder}
@@ -174,6 +200,7 @@ export function Contact() {
                 </label>
                 <textarea
                   id="message"
+                  {...validationProps}
                   name="message"
                   rows={5}
                   required
