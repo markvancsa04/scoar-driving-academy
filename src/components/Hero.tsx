@@ -1,5 +1,5 @@
 import { useSiteContent } from "@/data/content";
-import { ButtonLink } from "./Button";
+import { ActionButtonLink } from "./ActionLink";
 import { Icon } from "./Icon";
 import { Reveal } from "./Reveal";
 import { SiteImage } from "./SiteImage";
@@ -34,12 +34,12 @@ export function Hero() {
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={heroContent.primaryCta.href} variant="accent" size="lg">
+            <ActionButtonLink href={heroContent.primaryCta.href} variant="accent" size="lg">
               {heroContent.primaryCta.label}
-            </ButtonLink>
-            <ButtonLink href={heroContent.secondaryCta.href} variant="onDark" size="lg">
+            </ActionButtonLink>
+            <ActionButtonLink href={heroContent.secondaryCta.href} variant="onDark" size="lg">
               {heroContent.secondaryCta.label}
-            </ButtonLink>
+            </ActionButtonLink>
           </div>
 
           <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3">

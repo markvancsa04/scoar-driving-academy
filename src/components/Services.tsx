@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { useSiteContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
+import { ActionLink } from "./ActionLink";
 import { Reveal } from "./Reveal";
 import { Icon } from "./Icon";
 
@@ -27,13 +28,13 @@ export function Services() {
                 {service.description}
               </p>
               {service.cta && (
-                <a
+                <ActionLink
                   href={service.cta.href}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-accent"
                 >
                   {service.cta.label}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
+                </ActionLink>
               )}
             </article>
           </Reveal>

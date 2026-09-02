@@ -1,6 +1,6 @@
 import { Phone } from "lucide-react";
 import { useSiteContent } from "@/data/content";
-import { ButtonLink } from "./Button";
+import { ActionButtonLink } from "./ActionLink";
 import { Reveal } from "./Reveal";
 
 export function CtaBand() {
@@ -17,13 +17,13 @@ export function CtaBand() {
             {ctaContent.subtitle}
           </p>
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-            <ButtonLink href={ctaContent.primaryCta.href} variant="accent" size="lg">
+            <ActionButtonLink href={ctaContent.primaryCta.href} variant="accent" size="lg">
               {ctaContent.primaryCta.label}
-            </ButtonLink>
-            <ButtonLink href={contactInfo.phone.href} variant="onDark" size="lg">
+            </ActionButtonLink>
+            <ActionButtonLink href={contactInfo.phone.href} variant="onDark" size="lg">
               <Phone className="h-4 w-4" aria-hidden="true" />
               {contactInfo.phone.display}
-            </ButtonLink>
+            </ActionButtonLink>
           </div>
         </Reveal>
       </div>
