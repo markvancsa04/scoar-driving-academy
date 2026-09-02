@@ -130,6 +130,23 @@ export const ui = {
   ratingLabel: { hu: "Értékelés", ro: "Evaluare" },
 } satisfies Record<string, Localized>;
 
+/**
+ * Language for components rendered OUTSIDE the provider
+ * (root error boundaries). Reads the persisted choice on the client.
+ */
+export function useStandaloneUi() {
+  const [language, setLang] = useState<Language>(DEFAULT_LANGUAGE);
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(STORAGE_KEY);
+      if (stored === "hu" || stored === "ro") setLang(stored);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+  return useCallback((key: keyof typeof ui) => t(ui[key], language), [language]);
+}
+
 export function useUi() {
   const { language } = useLanguage();
   return useCallback((key: keyof typeof ui) => t(ui[key], language), [language]);

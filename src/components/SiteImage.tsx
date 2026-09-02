@@ -3,6 +3,7 @@ import { ImageOff } from "lucide-react";
 import type { ImageAsset } from "@/data/content";
 import { resolveMediaUrl } from "@/lib/media";
 import { cn } from "@/lib/utils";
+import { useUi } from "@/lib/i18n";
 
 type SiteImageProps = {
   image?: ImageAsset | null;
@@ -26,13 +27,15 @@ export function SiteImage({
   loading = "lazy",
   ...props
 }: SiteImageProps) {
+  const ui = useUi();
   const url = resolveMediaUrl(image);
+  const placeholder = fallbackLabel ?? ui("imagePlaceholder");
 
   if (!url) {
     return (
       <div
         role="img"
-        aria-label={fallbackLabel ?? image?.alt ?? "Kép hamarosan"}
+        aria-label={image?.alt || placeholder}
         className={cn(
           "grid place-items-center bg-surface text-muted-foreground",
           ratioClassName,
@@ -41,7 +44,7 @@ export function SiteImage({
       >
         <span className="flex flex-col items-center gap-2 p-6 text-center">
           <ImageOff className="h-6 w-6 opacity-50" aria-hidden="true" />
-          <span className="text-xs">{fallbackLabel ?? "Kép hamarosan"}</span>
+          <span className="text-xs">{placeholder}</span>
         </span>
       </div>
     );
