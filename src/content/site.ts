@@ -59,7 +59,7 @@ export type * from "./types";
 /* ------------------------------------------------------------------ */
 
 export const siteSettings: SiteSettings = {
-  name: "AUTOSISKOLA SCOBAR",
+  name: { hu: "SCOBAR AUTÓSISKOLA", ro: "SCOBAR ȘCOALĂ AUTO" },
   shortName: "SCOBAR",
   tagline: {
     hu: "Autósiskola Kézdivásárhelyen",
@@ -76,16 +76,16 @@ export const siteSettings: SiteSettings = {
 
   seo: {
     title: {
-      hu: "AUTOSISKOLA SCOBAR — Autósiskola Kézdivásárhelyen | B kategória",
-      ro: "AUTOSISKOLA SCOBAR — Școală de șoferi în Târgu Secuiesc | Categoria B",
+      hu: "SCOBAR AUTÓSISKOLA — Autósiskola Kézdivásárhelyen | B kategória",
+      ro: "SCOBAR ȘCOALĂ AUTO — Școală de șoferi în Târgu Secuiesc | Categoria B",
     },
     description: {
       hu: "B kategóriás jogosítvány Kézdivásárhelyen. Tapasztalt oktatók, modern gépkocsik, türelmes és gyakorlatorientált képzés. Jelentkezz még ma!",
       ro: "Permis categoria B în Târgu Secuiesc. Instructori cu experiență, mașini moderne, pregătire răbdătoare și practică. Înscrie-te astăzi!",
     },
     ogTitle: {
-      hu: "AUTOSISKOLA SCOBAR — Tanulj vezetni magabiztosan",
-      ro: "AUTOSISKOLA SCOBAR — Învață să conduci cu încredere",
+      hu: "SCOBAR AUTÓSISKOLA — Tanulj vezetni magabiztosan",
+      ro: "SCOBAR ȘCOALĂ AUTO — Învață să conduci cu încredere",
     },
     ogDescription: {
       hu: "B kategóriás vezetői engedély megszerzése Kézdivásárhelyen tapasztalt oktatókkal és modern gépkocsikkal.",
@@ -125,7 +125,10 @@ export const navCta = {
 /* ------------------------------------------------------------------ */
 
 export const heroContent = {
-  eyebrow: "Kézdivásárhely · Târgu Secuiesc",
+  eyebrow: {
+    hu: "Kézdivásárhely · Târgu Secuiesc",
+    ro: "Târgu Secuiesc · Kézdivásárhely",
+  },
   title: {
     hu: "Tanulj vezetni magabiztosan, biztonságosan.",
     ro: "Învață să conduci cu încredere și în siguranță.",
@@ -139,12 +142,12 @@ export const heroContent = {
   image: {
     src: heroAsset.url,
     alt: {
-      hu: "Az AUTOSISKOLA SCOBAR fehér BMW oktatóautója Kézdivásárhely belvárosában",
-      ro: "Mașina de școală BMW albă a AUTOSISKOLA SCOBAR în centrul orașului Târgu Secuiesc",
+      hu: "A SCOBAR AUTÓSISKOLA fehér BMW oktatóautója Kézdivásárhely belvárosában",
+      ro: "Mașina de școală BMW albă a SCOBAR ȘCOALĂ AUTO în centrul orașului Târgu Secuiesc",
     },
   } as ImageAsset,
   trustIndicators: [
-    { icon: "ShieldCheck", label: { hu: "\n", ro: "Școală autorizată" } },
+    { icon: "ShieldCheck", label: { hu: "Engedélyezett autósiskola", ro: "Școală autorizată" } },
     { icon: "Users", label: { hu: "Tapasztalt oktatók", ro: "Instructori cu experiență" } },
     { icon: "Car", label: { hu: "Modern gépkocsik", ro: "Mașini moderne" } },
     { icon: "CalendarClock", label: { hu: "Rugalmas időpontok", ro: "Program flexibil" } },
@@ -157,7 +160,7 @@ export const heroHighlights = [
     title: { hu: "Tapasztalt oktatók", ro: "Instructori cu experiență" },
     description: {
       hu: "1990 óta a helyi közlekedésben tanítunk, nyugodt, érthető magyarázatokkal.",
-      ro: "Predăm de ani buni în traficul local, cu explicații calme și clare.",
+      ro: "Din 1990 predăm în traficul local, cu explicații calme și clare.",
     },
   },
   {
@@ -198,8 +201,8 @@ export const aboutContent = {
   },
   paragraphs: [
     {
-      hu: "Az AUTOSISKOLA SCOBAR célja, hogy Kézdivásárhelyen és környékén olyan sofőröket képezzen, akik nemcsak a vizsgát teljesítik sikeresen, hanem magabiztosan és felelősen közlekednek éveken át.",
-      ro: "AUTOSISKOLA SCOBAR își propune să formeze în Târgu Secuiesc și în împrejurimi șoferi care nu doar promovează examenul, ci conduc responsabil și cu încredere ani la rând.",
+      hu: "A SCOBAR AUTÓSISKOLA célja, hogy Kézdivásárhelyen és környékén olyan sofőröket képezzen, akik nemcsak a vizsgát teljesítik sikeresen, hanem magabiztosan és felelősen közlekednek éveken át.",
+      ro: "SCOBAR ȘCOALĂ AUTO își propune să formeze în Târgu Secuiesc și în împrejurimi șoferi care nu doar promovează examenul, ci conduc responsabil și cu încredere ani la rând.",
     },
     {
       hu: "Oktatóink türelmesek, érthetően magyaráznak, és minden tanulóval a saját tempójában haladnak. A modern oktatási módszereket a helyi utak valós ismeretével kötjük össze — ott gyakorolsz, ahol később vezetni fogsz.",
@@ -258,7 +261,7 @@ export const services: Service[] = [
     title: { hu: "Elméleti felkészítés", ro: "Pregătire teoretică" },
     description: {
       hu: "Strukturált, modern és interaktív elméleti felkészítés közlekedési szabályokból, defenzív és preventív vezetésből, ökologikus vezetésből, autóismertetésből és elsősegélynyújtási alapfogalmakból, valamint tesztgyakorlással és folyamatos konzultációs lehetőséggel az oktatóval.",
-      ro: "Materie structurată, legislație rutieră, exerciții de teste și consultanță permanentă cu instructorul.",
+      ro: "Pregătire teoretică structurată, modernă și interactivă: legislație rutieră, conducere defensivă și preventivă, conducere ecologică, cunoașterea autovehiculului și noțiuni de prim ajutor, plus exerciții pe chestionare și consultanță permanentă cu instructorul.",
     },
   },
   {
@@ -266,8 +269,8 @@ export const services: Service[] = [
     icon: "SteeringWheel",
     title: { hu: "Gyakorlati vezetés", ro: "Conducere practică" },
     description: {
-      hu: "Városi és országúti órák, manőverek, parkolás és forgalmi helyzetek biztonságos környezetben.Valós forgalmi helyzetek gyakorlása,hogy készen állj mindenre.",
-      ro: "Ore în oraș și pe drum național, manevre, parcare și situații de trafic într-un mediu sigur.",
+      hu: "Városi és országúti órák, manőverek, parkolás és forgalmi helyzetek biztonságos környezetben. Valós forgalmi helyzetek gyakorlása, hogy készen állj mindenre.",
+      ro: "Ore în oraș și pe drum național, manevre, parcare și situații de trafic într-un mediu sigur. Exersăm situații reale de trafic, ca să fii pregătit pentru orice.",
     },
   },
   {
@@ -319,20 +322,20 @@ export const instructorsContent = {
   },
   seo: {
     title: {
-      hu: "Oktatóink — AUTOSISKOLA SCOBAR Kézdivásárhely",
-      ro: "Instructorii noștri — AUTOSISKOLA SCOBAR Târgu Secuiesc",
+      hu: "Oktatóink — SCOBAR AUTÓSISKOLA Kézdivásárhely",
+      ro: "Instructorii noștri — SCOBAR ȘCOALĂ AUTO Târgu Secuiesc",
     },
     description: {
-      hu: "Ismerd meg az AUTOSISKOLA SCOBAR teljes oktatói csapatát Kézdivásárhelyen: tapasztalt, türelmes B kategóriás oktatók.",
-      ro: "Cunoaște întreaga echipă de instructori AUTOSISKOLA SCOBAR din Târgu Secuiesc: profesioniști răbdători, cu experiență, pentru categoria B.",
+      hu: "Ismerd meg a SCOBAR AUTÓSISKOLA teljes oktatói csapatát Kézdivásárhelyen: tapasztalt, türelmes B kategóriás oktatók.",
+      ro: "Cunoaște întreaga echipă de instructori SCOBAR ȘCOALĂ AUTO din Târgu Secuiesc: profesioniști răbdători, cu experiență, pentru categoria B.",
     },
     ogTitle: {
-      hu: "Oktatóink — AUTOSISKOLA SCOBAR",
-      ro: "Instructorii noștri — AUTOSISKOLA SCOBAR",
+      hu: "Oktatóink — SCOBAR AUTÓSISKOLA",
+      ro: "Instructorii noștri — SCOBAR ȘCOALĂ AUTO",
     },
     ogDescription: {
-      hu: "Az AUTOSISKOLA SCOBAR oktatói: tapasztalt szakemberek, akik a te tempódhoz igazodnak.",
-      ro: "Instructorii AUTOSISKOLA SCOBAR: profesioniști cu experiență, care se adaptează ritmului tău.",
+      hu: "A SCOBAR AUTÓSISKOLA oktatói: tapasztalt szakemberek, akik a te tempódhoz igazodnak.",
+      ro: "Instructorii SCOBAR ȘCOALĂ AUTO: profesioniști cu experiență, care se adaptează ritmului tău.",
     },
   },
 };
@@ -548,7 +551,7 @@ export const advantages = [
     title: { hu: "Türelmes hozzáállás", ro: "Atitudine răbdătoare" },
     description: {
       hu: "Nyugodt légkör, bátorító visszajelzés.",
-      ro: "Atmosferă calmă, feedback încurajator — învățăm și din greșeli.",
+      ro: "Atmosferă calmă, feedback încurajator.",
     },
   },
   {
@@ -572,7 +575,7 @@ export const advantages = [
     title: { hu: "Gyakorlatias képzés", ro: "Pregătire practică" },
     description: {
       hu: "A képzés elméleti felkészítésből és gyakorlati vezetési órákból áll. Az elmélet során átvesszük a vizsgához szükséges teljes tananyagot, a gyakorlaton pedig fokozatosan haladunk a manőverektől a valós forgalomig.",
-      ro: "Trafic real, conducere pe timp de noapte și vreme rea, ca să fii pregătit de orice.",
+      ro: "Pregătirea cuprinde ore de teorie și ore practice de conducere. La teorie parcurgem întreaga materie necesară examenului, iar la practică avansăm treptat de la manevre la traficul real.",
     },
   },
   {
@@ -785,7 +788,7 @@ export const faqItems: FaqItem[] = [
     question: { hu: "Milyen iratokra van szükség?", ro: "Ce acte sunt necesare?" },
     answer: {
       hu: "Személyi igazolvány másolat szükséges. A pontos listát a beiratkozáskor részletesen átbeszéljük.",
-      ro: "Carte de identitate, fișă medicală, aviz psihologic și formularul de înscriere. Lista exactă o discutăm detaliat la înscriere.",
+      ro: "Este necesară o copie a cărții de identitate. Lista exactă o discutăm detaliat la înscriere.",
     },
   },
   {
@@ -931,7 +934,7 @@ export const contactInfo = {
     directions: { hu: "Útvonaltervezés", ro: "Vezi traseul" },
     map: { hu: "térkép", ro: "hartă" },
   },
-  businessName: " SCOBAR AUTÓSISKOLA",
+  businessName: { hu: "SCOBAR AUTÓSISKOLA", ro: "SCOBAR ȘCOALĂ AUTO" },
   address: {
     street: "Curtea 39",
     city: "Târgu Secuiesc (Kézdivásárhely)",
@@ -939,7 +942,7 @@ export const contactInfo = {
     country: { hu: "Románia", ro: "România" },
     full: {
       hu: "Curtea 39, Nr.3. Târgu Secuiesc 525400, Románia",
-      ro: "Curtea 39, Târgu Secuiesc 525400, România",
+      ro: "Curtea 39, Nr.3. Târgu Secuiesc 525400, România",
     },
   },
   phone: {
@@ -1011,8 +1014,8 @@ export const footerContent = {
   servicesTitle: { hu: "Szolgáltatások", ro: "Servicii" },
   contactTitle: { hu: "Kapcsolat", ro: "Contact" },
   copyright: {
-    hu: `© ${siteSettings.copyrightYear} AUTOSISKOLA SCOBAR. Minden jog fenntartva.`,
-    ro: `© ${siteSettings.copyrightYear} AUTOSISKOLA SCOBAR. Toate drepturile rezervate.`,
+    hu: `© ${siteSettings.copyrightYear} SCOBAR AUTÓSISKOLA. Minden jog fenntartva.`,
+    ro: `© ${siteSettings.copyrightYear} SCOBAR ȘCOALĂ AUTO. Toate drepturile rezervate.`,
   },
   legalLinks: [
     { label: { hu: "Adatvédelmi tájékoztató", ro: "Politica de confidențialitate" }, href: "#contact" },
