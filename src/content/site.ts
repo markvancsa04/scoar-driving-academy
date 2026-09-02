@@ -920,12 +920,12 @@ export const contactInfo = {
     postalCode: "525400",
     country: { hu: "Románia", ro: "România" },
     full: {
-      hu: "Curtea 39, Târgu Secuiesc 525400, Románia",
+      hu: "Curtea 39, Nr.3. Târgu Secuiesc 525400, Románia",
       ro: "Curtea 39, Târgu Secuiesc 525400, România",
     },
   },
   phone: {
-    display: "+40 724 527 584",
+    display: "+40 724 527 584   +40 729 845 220  ",
     href: "tel:+40724527584",
   },
   email: {
