@@ -144,7 +144,7 @@ export const heroContent = {
     },
   } as ImageAsset,
   trustIndicators: [
-    { icon: "ShieldCheck", label: { hu: "Engedélyezett képzés", ro: "Școală autorizată" } },
+    { icon: "ShieldCheck", label: { hu: "\n", ro: "Școală autorizată" } },
     { icon: "Users", label: { hu: "Tapasztalt oktatók", ro: "Instructori cu experiență" } },
     { icon: "Car", label: { hu: "Modern gépkocsik", ro: "Mașini moderne" } },
     { icon: "CalendarClock", label: { hu: "Rugalmas időpontok", ro: "Program flexibil" } },
