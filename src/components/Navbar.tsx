@@ -40,12 +40,12 @@ export function Navbar() {
       )}
     >
       <div className="container-page">
-        <div className="grid h-24 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:h-28 xl:grid-cols-[auto_minmax(0,1fr)_auto]">
+        <div className="grid h-24 grid-cols-[minmax(0,1fr)_auto] items-center gap-2 sm:h-28 sm:gap-4 xl:grid-cols-[auto_minmax(0,1fr)_auto]">
           <Link to="/" hash="acasa" className="flex min-w-0 items-center gap-3 sm:gap-4">
-            <span className="flex min-w-0 flex-col items-start gap-1">
+            <span className="flex min-w-0 flex-col items-center gap-1">
               <span
                 className={cn(
-                  "grid h-14 w-[224px] shrink-0 place-items-center rounded-xl p-1 transition-colors sm:h-16 sm:w-[256px] xl:h-[72px] xl:w-[288px]",
+                  "grid aspect-[4/1] w-[9.5rem] max-w-full place-items-center rounded-xl p-1 transition-colors sm:w-[15rem] xl:w-[18rem]",
                   solid ? "bg-card ring-1 ring-border" : "bg-primary-foreground/90 backdrop-blur",
                 )}
               >
@@ -58,12 +58,13 @@ export function Navbar() {
               </span>
               <span
                 className={cn(
-                  "block whitespace-nowrap font-display text-sm font-bold uppercase leading-tight tracking-tight sm:text-base",
+                  "block max-w-full truncate text-center font-display text-[0.68rem] font-bold uppercase leading-tight tracking-tight sm:text-sm md:text-base",
                   solid ? "text-foreground" : "text-primary-foreground",
                 )}
               >
-                       SCOBAR AUTÓSISKOLA
+                SCOBAR AUTÓSISKOLA
               </span>
+
             </span>
             <span
               className={cn(
