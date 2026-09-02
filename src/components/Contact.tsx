@@ -5,6 +5,7 @@ import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
+import { ActionLink, isDeadHref } from "./ActionLink";
 
 const fieldClass =
   "w-full rounded-xl border border-input bg-card px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-accent focus:ring-2 focus:ring-accent/20";
@@ -110,19 +111,19 @@ export function Contact() {
               </li>
             </ul>
 
-            {socialLinks.length > 0 && (
+            {socialLinks.filter((social) => !isDeadHref(social.href)).length > 0 && (
               <div className="mt-7 flex flex-wrap gap-2 border-t border-border pt-6">
-                {socialLinks.map((social) => (
-                  <a
+                {socialLinks
+                  .filter((social) => !isDeadHref(social.href))
+                  .map((social) => (
+                  <ActionLink
                     key={social.label}
                     href={social.href}
-                    target="_blank"
-                    rel="noreferrer noopener"
                     aria-label={social.label}
                     className="grid h-10 w-10 place-items-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
                   >
                     <Icon name={social.icon} className="h-4 w-4" aria-hidden="true" />
-                  </a>
+                  </ActionLink>
                 ))}
               </div>
             )}

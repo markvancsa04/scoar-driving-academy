@@ -2,6 +2,7 @@ import { CalendarDays, ArrowRight } from "lucide-react";
 import { useSiteContent } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
+import { ActionLink } from "./ActionLink";
 import { SiteImage } from "./SiteImage";
 
 export function News() {
@@ -52,7 +53,7 @@ export function News() {
                     {item.excerpt}
                   </p>
                   {item.cta && (
-                    <a
+                    <ActionLink
                       href={item.cta.href}
                       className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-accent"
                     >
@@ -61,7 +62,7 @@ export function News() {
                         className="h-4 w-4 transition-transform group-hover:translate-x-1"
                         aria-hidden="true"
                       />
-                    </a>
+                    </ActionLink>
                   )}
                 </div>
               </article>

@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { useSiteContent, type Instructor } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
-import { ButtonLink } from "./Button";
+import { ActionButtonLink } from "./ActionLink";
 import { SiteImage } from "./SiteImage";
 
 export function InstructorCard({ instructor }: { instructor: Instructor }) {
@@ -34,9 +34,9 @@ export function InstructorCard({ instructor }: { instructor: Instructor }) {
           ))}
         </div>
         {instructor.contact && (
-          <ButtonLink href={instructor.contact.href} variant="outline" className="mt-6 w-full">
+          <ActionButtonLink href={instructor.contact.href} variant="outline" className="mt-6 w-full">
             {instructor.contact.label}
-          </ButtonLink>
+          </ActionButtonLink>
         )}
       </div>
     </article>

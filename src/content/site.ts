@@ -955,8 +955,8 @@ export const contactInfo = {
   ],
 
   email: {
-    display: "info@autosiskolascobar.ro",
-    href: "mailto:info@autosiskolascobar.ro",
+    display: "scobarautosiskola@gmail.com",
+    href: "mailto:scobarautosiskola@gmail.com",
   },
   openingHours: [
     { day: { hu: "Hétfő – Péntek", ro: "Luni – Vineri" }, hours: "09:00 – 17:00" },
@@ -997,8 +997,19 @@ export const contactInfo = {
   },
 };
 
-export const socialLinks = [
-  { label: "Facebook", icon: "Facebook", href: "https://facebook.com" },
+/**
+ * Social profiles.
+ * ---------------------------------------------------------------
+ * IMPORTANT: `href` must be the REAL, official profile URL.
+ * If a URL is not known yet, leave it as an empty string ("") —
+ * the UI then hides the icon completely instead of rendering a
+ * dead link. Just paste the official URL here to enable it.
+ *
+ * TODO(client): paste the official Facebook page URL below,
+ * e.g. "https://www.facebook.com/<pagina-oficiala>".
+ */
+export const socialLinks: { label: string; icon: string; href: string }[] = [
+  { label: "Facebook", icon: "Facebook", href: "" },
 ];
 
 /* ------------------------------------------------------------------ */

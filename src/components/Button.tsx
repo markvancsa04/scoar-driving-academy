@@ -4,6 +4,9 @@ import { cn } from "@/lib/utils";
 type Variant = "primary" | "accent" | "outline" | "ghost" | "onDark";
 type Size = "md" | "lg";
 
+export type ButtonVariant = Variant;
+export type ButtonSize = Size;
+
 const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-60";
 
@@ -23,6 +26,14 @@ const sizes: Record<Size, string> = {
   md: "px-5 py-2.5 text-sm",
   lg: "px-7 py-3.5 text-[0.95rem]",
 };
+
+export function buttonClass(
+  variant: Variant = "primary",
+  size: Size = "md",
+  className?: string,
+) {
+  return cn(base, variants[variant], sizes[size], className);
+}
 
 export function ButtonLink({
   variant = "primary",

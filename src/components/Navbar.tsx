@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Mail } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useSiteContent } from "@/data/content";
 import { useUi } from "@/lib/i18n";
-import { ButtonLink } from "./Button";
+import { ActionButtonLink, ActionLink, isDeadHref } from "./ActionLink";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { SiteImage } from "./SiteImage";
+import { Icon } from "./Icon";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
-  const { navigation, navCta, siteSettings, contactInfo } = useSiteContent();
+  const { navigation, navCta, siteSettings, contactInfo, socialLinks } = useSiteContent();
   const ui = useUi();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -118,9 +119,9 @@ export function Navbar() {
               <LanguageSwitcher onDark={!solid} />
             </span>
 
-            <ButtonLink href={navCta.href} variant="accent" className="hidden md:inline-flex">
+            <ActionButtonLink href={navCta.href} variant="accent" className="hidden md:inline-flex">
               {navCta.label}
-            </ButtonLink>
+            </ActionButtonLink>
 
             <button
               type="button"
@@ -186,7 +187,7 @@ export function Navbar() {
               {item.label}
             </Link>
           ))}
-          <ButtonLink
+          <ActionButtonLink
             href={navCta.href}
             variant="accent"
             size="lg"
@@ -194,7 +195,48 @@ export function Navbar() {
             onClick={() => setOpen(false)}
           >
             {navCta.label}
-          </ButtonLink>
+          </ActionButtonLink>
+
+          {/* Mobile menu contact block: clickable phones, email, socials, language */}
+          <div className="mt-5 flex flex-col gap-2 border-t border-border pt-5">
+            {contactInfo.phones.map((entry) => (
+              <a
+                key={entry.href}
+                href={entry.href}
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-base font-semibold text-foreground transition-colors hover:bg-muted"
+              >
+                <Phone className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                {entry.display}
+              </a>
+            ))}
+            <a
+              href={contactInfo.email.href}
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center gap-2 break-all rounded-xl px-4 py-2.5 text-base font-semibold text-foreground transition-colors hover:bg-muted"
+            >
+              <Mail className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+              {contactInfo.email.display}
+            </a>
+            <div className="mt-2 flex items-center gap-2 px-2">
+              {socialLinks
+                .filter((social) => !isDeadHref(social.href))
+                .map((social) => (
+                  <ActionLink
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    onClick={() => setOpen(false)}
+                    className="grid h-10 w-10 place-items-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+                  >
+                    <Icon name={social.icon} className="h-4 w-4" aria-hidden="true" />
+                  </ActionLink>
+                ))}
+              <span className="ml-auto">
+                <LanguageSwitcher />
+              </span>
+            </div>
+          </div>
         </nav>
       </div>
     </header>
