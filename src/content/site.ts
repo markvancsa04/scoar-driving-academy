@@ -913,7 +913,7 @@ export const contactInfo = {
     directions: { hu: "Útvonaltervezés", ro: "Vezi traseul" },
     map: { hu: "térkép", ro: "hartă" },
   },
-  businessName: "AUTOSISKOLA SCOBAR",
+  businessName: " SCOBAR AUTÓSISKOLA",
   address: {
     street: "Curtea 39",
     city: "Târgu Secuiesc (Kézdivásárhely)",
