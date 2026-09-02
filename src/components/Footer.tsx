@@ -2,6 +2,7 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useSiteContent } from "@/data/content";
 import { Icon } from "./Icon";
+import { ActionLink, isDeadHref } from "./ActionLink";
 import { SiteImage } from "./SiteImage";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
@@ -28,18 +29,18 @@ export function Footer() {
               {footerContent.description}
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-2">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label={social.label}
-                  className="grid h-10 w-10 place-items-center rounded-xl border border-primary-foreground/15 text-primary-foreground/70 transition-colors hover:border-accent hover:text-accent"
-                >
-                  <Icon name={social.icon} className="h-4 w-4" aria-hidden="true" />
-                </a>
-              ))}
+              {socialLinks
+                .filter((social) => !isDeadHref(social.href))
+                .map((social) => (
+                  <ActionLink
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    className="grid h-10 w-10 place-items-center rounded-xl border border-primary-foreground/15 text-primary-foreground/70 transition-colors hover:border-accent hover:text-accent"
+                  >
+                    <Icon name={social.icon} className="h-4 w-4" aria-hidden="true" />
+                  </ActionLink>
+                ))}
               <LanguageSwitcher onDark />
             </div>
           </div>
@@ -89,13 +90,28 @@ export function Footer() {
             <ul className="mt-5 space-y-3.5 text-sm text-primary-foreground/60">
               <li className="flex gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                <address className="not-italic">{contactInfo.address.full}</address>
+                <a
+                  href={contactInfo.mapLinkUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="transition-colors hover:text-accent"
+                >
+                  <address className="not-italic">{contactInfo.address.full}</address>
+                </a>
               </li>
               <li className="flex gap-3">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                <a href={contactInfo.phone.href} className="transition-colors hover:text-accent">
-                  {contactInfo.phone.display}
-                </a>
+                <span className="flex flex-col gap-1">
+                  {contactInfo.phones.map((entry) => (
+                    <a
+                      key={entry.href}
+                      href={entry.href}
+                      className="w-fit transition-colors hover:text-accent"
+                    >
+                      {entry.display}
+                    </a>
+                  ))}
+                </span>
               </li>
               <li className="flex gap-3">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
@@ -118,12 +134,12 @@ export function Footer() {
           <ul className="flex flex-wrap gap-5">
             {footerContent.legalLinks.map((link) => (
               <li key={link.label}>
-                <a
+                <ActionLink
                   href={link.href}
                   className="text-xs text-primary-foreground/50 transition-colors hover:text-accent"
                 >
                   {link.label}
-                </a>
+                </ActionLink>
               </li>
             ))}
           </ul>
