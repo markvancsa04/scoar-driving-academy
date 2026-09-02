@@ -5,23 +5,17 @@ import { Footer } from "@/components/Footer";
 import { CtaBand } from "@/components/CtaBand";
 import { InstructorGrid } from "@/components/Instructors";
 import { Section, SectionHeading } from "@/components/Section";
-import { useSiteContent } from "@/data/content";
+import { defaultContent, useSiteContent } from "@/data/content";
+
+const { seo } = defaultContent.instructorsContent;
 
 export const Route = createFileRoute("/oktatoink")({
   head: () => ({
     meta: [
-      { title: "Oktatóink — AUTOSISKOLA SCOBAR Kézdivásárhely" },
-      {
-        name: "description",
-        content:
-          "Ismerd meg az AUTOSISKOLA SCOBAR teljes oktatói csapatát Kézdivásárhelyen: tapasztalt, türelmes B kategóriás oktatók.",
-      },
-      { property: "og:title", content: "Oktatóink — AUTOSISKOLA SCOBAR" },
-      {
-        property: "og:description",
-        content:
-          "Az AUTOSISKOLA SCOBAR oktatói: tapasztalt szakemberek, akik a te tempódhoz igazodnak.",
-      },
+      { title: seo.title },
+      { name: "description", content: seo.description },
+      { property: "og:title", content: seo.ogTitle },
+      { property: "og:description", content: seo.ogDescription },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
