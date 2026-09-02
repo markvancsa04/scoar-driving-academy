@@ -45,7 +45,7 @@ export function Navbar() {
             <span className="flex min-w-0 flex-col items-center gap-1">
               <span
                 className={cn(
-                  "grid aspect-[4/1] w-[9.5rem] max-w-full place-items-center rounded-xl p-1 transition-colors sm:w-[15rem] xl:w-[18rem]",
+                  "grid aspect-[4/1] w-[8.5rem] min-w-[7.5rem] max-w-full place-items-center rounded-xl p-0.5 transition-colors sm:w-[15rem] sm:p-1 xl:w-[18rem]",
                   solid ? "bg-card ring-1 ring-border" : "bg-primary-foreground/90 backdrop-blur",
                 )}
               >
@@ -58,7 +58,7 @@ export function Navbar() {
               </span>
               <span
                 className={cn(
-                  "block max-w-full truncate text-center font-display text-[0.68rem] font-bold uppercase leading-tight tracking-tight sm:text-sm md:text-base",
+                  "block max-w-full truncate text-center font-display text-[0.6rem] font-bold uppercase leading-tight tracking-tight sm:text-sm md:text-base",
                   solid ? "text-foreground" : "text-primary-foreground",
                 )}
               >
@@ -106,13 +106,13 @@ export function Navbar() {
                   key={entry.href}
                   href={entry.href}
                   className={cn(
-                    "inline-flex items-center gap-1.5 whitespace-nowrap text-[0.7rem] font-semibold leading-tight transition-colors sm:text-sm",
+                    "inline-flex items-center gap-1 whitespace-nowrap text-[0.62rem] font-semibold leading-tight transition-colors sm:gap-1.5 sm:text-sm",
                     solid
                       ? "text-foreground hover:text-accent"
                       : "text-primary-foreground hover:text-accent",
                   )}
                 >
-                  <Phone className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" aria-hidden="true" />
+                  <Phone className="hidden h-3.5 w-3.5 shrink-0 sm:inline-block sm:h-4 sm:w-4" aria-hidden="true" />
                   {entry.display}
                 </a>
               ))}
