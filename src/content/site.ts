@@ -156,7 +156,7 @@ export const heroHighlights = [
     icon: "GraduationCap",
     title: { hu: "Tapasztalt oktatók", ro: "Instructori cu experiență" },
     description: {
-      hu: "Évek óta a helyi közlekedésben tanítunk, nyugodt, érthető magyarázatokkal.",
+      hu: "1990 óta a helyi közlekedésben tanítunk, nyugodt, érthető magyarázatokkal.",
       ro: "Predăm de ani buni în traficul local, cu explicații calme și clare.",
     },
   },
