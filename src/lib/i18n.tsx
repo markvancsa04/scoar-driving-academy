@@ -112,6 +112,22 @@ export const ui = {
   languageSwitcherLabel: { hu: "Nyelv váltása", ro: "Schimbă limba" },
   menuOpen: { hu: "Menü megnyitása", ro: "Deschide meniul" },
   menuClose: { hu: "Menü bezárása", ro: "Închide meniul" },
+  imagePlaceholder: { hu: "Kép hamarosan", ro: "Imagine în curând" },
+  loading: { hu: "Betöltés…", ro: "Se încarcă…" },
+  empty: { hu: "Egyelőre nincs megjeleníthető tartalom.", ro: "Momentan nu există conținut de afișat." },
+  notFoundTitle: { hu: "Az oldal nem található", ro: "Pagina nu a fost găsită" },
+  notFoundText: {
+    hu: "A keresett oldal nem létezik, vagy áthelyezték.",
+    ro: "Pagina căutată nu există sau a fost mutată.",
+  },
+  goHome: { hu: "Vissza a főoldalra", ro: "Înapoi la pagina principală" },
+  errorTitle: { hu: "Az oldal nem töltődött be", ro: "Pagina nu s-a încărcat" },
+  errorText: {
+    hu: "Hiba történt nálunk. Próbáld újratölteni az oldalt, vagy térj vissza a főoldalra.",
+    ro: "A apărut o eroare de partea noastră. Încearcă să reîncarci pagina sau revino la pagina principală.",
+  },
+  retry: { hu: "Újrapróbálom", ro: "Încearcă din nou" },
+  ratingLabel: { hu: "Értékelés", ro: "Evaluare" },
 } satisfies Record<string, Localized>;
 
 export function useUi() {
