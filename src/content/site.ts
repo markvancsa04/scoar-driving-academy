@@ -317,6 +317,24 @@ export const instructorsContent = {
     hu: "Csapatunk teljes névsora — mindannyian a biztonságos, magabiztos vezetésre készítenek fel.",
     ro: "Întreaga noastră echipă — toți te pregătesc pentru o conducere sigură și încrezătoare.",
   },
+  seo: {
+    title: {
+      hu: "Oktatóink — AUTOSISKOLA SCOBAR Kézdivásárhely",
+      ro: "Instructorii noștri — AUTOSISKOLA SCOBAR Târgu Secuiesc",
+    },
+    description: {
+      hu: "Ismerd meg az AUTOSISKOLA SCOBAR teljes oktatói csapatát Kézdivásárhelyen: tapasztalt, türelmes B kategóriás oktatók.",
+      ro: "Cunoaște întreaga echipă de instructori AUTOSISKOLA SCOBAR din Târgu Secuiesc: profesioniști răbdători, cu experiență, pentru categoria B.",
+    },
+    ogTitle: {
+      hu: "Oktatóink — AUTOSISKOLA SCOBAR",
+      ro: "Instructorii noștri — AUTOSISKOLA SCOBAR",
+    },
+    ogDescription: {
+      hu: "Az AUTOSISKOLA SCOBAR oktatói: tapasztalt szakemberek, akik a te tempódhoz igazodnak.",
+      ro: "Instructorii AUTOSISKOLA SCOBAR: profesioniști cu experiență, care se adaptează ritmului tău.",
+    },
+  },
 };
 
 export const instructors: Instructor[] = [
@@ -959,6 +977,19 @@ export const contactInfo = {
     successMessage: {
       hu: "Köszönjük! Hamarosan felvesszük veled a kapcsolatot.",
       ro: "Mulțumim! Te vom contacta în curând.",
+    },
+    sendingLabel: { hu: "Küldés folyamatban…", ro: "Se trimite…" },
+    requiredMessage: {
+      hu: "Kérjük, töltsd ki ezt a mezőt.",
+      ro: "Te rugăm să completezi acest câmp.",
+    },
+    invalidEmailMessage: {
+      hu: "Kérjük, adj meg egy érvényes e-mail címet.",
+      ro: "Te rugăm să introduci o adresă de e-mail validă.",
+    },
+    invalidPhoneMessage: {
+      hu: "Kérjük, adj meg egy érvényes telefonszámot.",
+      ro: "Te rugăm să introduci un număr de telefon valid.",
     },
   },
 };
