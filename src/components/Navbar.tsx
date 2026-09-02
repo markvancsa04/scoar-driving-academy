@@ -59,7 +59,7 @@ export function Navbar() {
               </span>
               <span
                 className={cn(
-                  "block max-w-full truncate text-center font-display text-[0.6rem] font-bold uppercase leading-tight tracking-tight sm:text-sm md:text-base",
+                  "block max-w-full truncate text-center font-display text-sm font-bold uppercase leading-tight tracking-tight sm:text-lg md:text-xl",
                   solid ? "text-foreground" : "text-primary-foreground",
                 )}
               >
