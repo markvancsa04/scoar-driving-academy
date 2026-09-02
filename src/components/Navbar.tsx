@@ -97,37 +97,47 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <a
-              href={contactInfo.phone.href}
-              className={cn(
-                "hidden items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold transition-colors sm:inline-flex xl:hidden",
-                solid ? "text-foreground hover:text-accent" : "text-primary-foreground hover:text-accent",
-              )}
-            >
-              <Phone className="h-4 w-4" aria-hidden="true" />
-              {contactInfo.phone.display}
-            </a>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex flex-col items-end gap-0.5">
+              {contactInfo.phones.map((entry) => (
+                <a
+                  key={entry.href}
+                  href={entry.href}
+                  className={cn(
+                    "inline-flex items-center gap-1.5 whitespace-nowrap text-[0.7rem] font-semibold leading-tight transition-colors sm:text-sm",
+                    solid
+                      ? "text-foreground hover:text-accent"
+                      : "text-primary-foreground hover:text-accent",
+                  )}
+                >
+                  <Phone className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" aria-hidden="true" />
+                  {entry.display}
+                </a>
+              ))}
+            </div>
 
-            <LanguageSwitcher onDark={!solid} className="hidden sm:inline-flex" />
-            <ButtonLink href={navCta.href} variant="accent" className="hidden md:inline-flex">
-              {navCta.label}
-            </ButtonLink>
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-label={open ? ui("menuClose") : ui("menuOpen")}
-              aria-expanded={open}
-              className={cn(
-                "grid h-11 w-11 shrink-0 place-items-center rounded-xl border transition-colors xl:hidden",
-                solid
-                  ? "border-border text-foreground"
-                  : "border-primary-foreground/25 text-primary-foreground",
-              )}
-            >
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+            <div className="flex flex-col items-end gap-1.5 xl:flex-row xl:items-center xl:gap-2">
+              <LanguageSwitcher onDark={!solid} />
+              <ButtonLink href={navCta.href} variant="accent" className="hidden md:inline-flex">
+                {navCta.label}
+              </ButtonLink>
+              <button
+                type="button"
+                onClick={() => setOpen((v) => !v)}
+                aria-label={open ? ui("menuClose") : ui("menuOpen")}
+                aria-expanded={open}
+                className={cn(
+                  "grid h-10 w-10 shrink-0 place-items-center rounded-xl border transition-colors sm:h-11 sm:w-11 xl:hidden",
+                  solid
+                    ? "border-border text-foreground"
+                    : "border-primary-foreground/25 text-primary-foreground",
+                )}
+              >
+                {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
 
