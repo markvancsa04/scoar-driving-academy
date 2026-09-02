@@ -40,7 +40,7 @@ export function Navbar() {
       )}
     >
       <div className="container-page">
-        <div className="grid h-20 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 xl:grid-cols-[auto_minmax(0,1fr)_auto]">
+        <div className="grid h-24 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:h-28 xl:grid-cols-[auto_minmax(0,1fr)_auto]">
           <Link to="/" hash="acasa" className="flex min-w-0 items-center gap-3 sm:gap-4">
             <span className="flex min-w-0 flex-col items-start gap-1">
               <span
