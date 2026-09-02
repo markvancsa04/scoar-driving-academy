@@ -221,8 +221,8 @@ export const aboutContent = {
   } as ImageAsset,
   /** Szerkeszthető adatok — cseréld a valós számokra. */
   stats: [
-    { value: "15+", label: { hu: "év tapasztalat", ro: "ani de experiență" } },
-    { value: "1200+", label: { hu: "sikeres tanuló", ro: "cursanți reușiți" } },
+    { value: "36+", label: { hu: "év tapasztalat", ro: "ani de experiență" } },
+    { value: "7000+", label: { hu: "sikeres tanuló", ro: "cursanți reușiți" } },
     { value: "3", label: { hu: "oktató gépkocsi", ro: "mașini de școală" } },
     { value: "B", label: { hu: "fő kategória", ro: "categorie principală" } },
   ],
