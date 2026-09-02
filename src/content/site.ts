@@ -766,7 +766,7 @@ export const faqItems: FaqItem[] = [
   {
     question: { hu: "Milyen iratokra van szükség?", ro: "Ce acte sunt necesare?" },
     answer: {
-      hu: "Személyi igazolvány, orvosi alkalmassági igazolás, pszichológiai vizsgálat, valamint a beiratkozási űrlap. A pontos listát a beiratkozáskor részletesen átbeszéljük.",
+      hu: "Személyi igazolvány másolat szükséges. A pontos listát a beiratkozáskor részletesen átbeszéljük.",
       ro: "Carte de identitate, fișă medicală, aviz psihologic și formularul de înscriere. Lista exactă o discutăm detaliat la înscriere.",
     },
   },
