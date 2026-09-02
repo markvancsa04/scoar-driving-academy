@@ -26,7 +26,9 @@ export function LocalizedHead() {
     setMeta('meta[name="description"]', t(seo.description, language));
     setMeta('meta[property="og:title"]', t(seo.ogTitle, language));
     setMeta('meta[property="og:description"]', t(seo.ogDescription, language));
+    setMeta('meta[property="og:site_name"]', t(site.siteSettings.name, language));
     setMeta('meta[property="og:locale"]', language === "ro" ? "ro_RO" : "hu_RO");
+
   }, [language, pathname]);
 
   return null;
