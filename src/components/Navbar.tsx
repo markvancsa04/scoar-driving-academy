@@ -62,7 +62,7 @@ export function Navbar() {
                   solid ? "text-foreground" : "text-primary-foreground",
                 )}
               >
-                {siteSettings.name}
+                {" SCOBAR AUTOSISKOLA"}
               </span>
               <span
                 className={cn(
