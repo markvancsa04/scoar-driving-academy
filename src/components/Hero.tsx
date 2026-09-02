@@ -21,7 +21,7 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <div className="container-page relative flex min-h-[92svh] flex-col justify-center pb-16 pt-32 sm:pb-24 sm:pt-36">
+      <div className="container-page relative flex min-h-[92svh] flex-col justify-center pb-16 pt-40 sm:pb-24 sm:pt-36">
         <Reveal className="max-w-3xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/90 backdrop-blur">
             {heroContent.eyebrow}
