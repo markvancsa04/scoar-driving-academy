@@ -139,7 +139,7 @@ export interface SeoContent {
 }
 
 export interface SiteSettings {
-  name: string;
+  name: Loc;
   shortName: string;
   tagline: Loc;
   locale: string;
