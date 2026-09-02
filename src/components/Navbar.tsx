@@ -118,7 +118,7 @@ export function Navbar() {
               ))}
             </div>
 
-            <div className="flex flex-col items-end gap-1.5 xl:flex-row xl:items-center xl:gap-2">
+            <div className="flex flex-col items-end gap-1.5 sm:flex-row sm:items-center sm:gap-2">
               <LanguageSwitcher onDark={!solid} />
               <ButtonLink href={navCta.href} variant="accent" className="hidden md:inline-flex">
                 {navCta.label}
