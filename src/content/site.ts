@@ -257,7 +257,7 @@ export const services: Service[] = [
     icon: "BookOpen",
     title: { hu: "Elméleti felkészítés", ro: "Pregătire teoretică" },
     description: {
-      hu: "Strukturált tananyag, modern interaktiv,elméleti felkészités.",
+      hu: "Strukturált, modern és interaktív elméleti felkészítés közlekedési szabályokból, defenzív és preventív vezetésből, ökologikus vezetésből, autóismertetésből és elsősegélynyújtási alapfogalmakból, valamint tesztgyakorlással és folyamatos konzultációs lehetőséggel az oktatóval.",
       ro: "Materie structurată, legislație rutieră, exerciții de teste și consultanță permanentă cu instructorul.",
     },
   },
