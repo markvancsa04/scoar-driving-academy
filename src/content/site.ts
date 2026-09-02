@@ -925,9 +925,14 @@ export const contactInfo = {
     },
   },
   phone: {
-    display: "+40 724 527 584   +40 729 845 220  ",
+    display: "+40 724 527 584",
     href: "tel:+40724527584",
   },
+  phones: [
+    { display: "+40 724 527 584", href: "tel:+40724527584" },
+    { display: "+40 729 845 220", href: "tel:+40729845220" },
+  ],
+
   email: {
     display: "info@autosiskolascobar.ro",
     href: "mailto:info@autosiskolascobar.ro",

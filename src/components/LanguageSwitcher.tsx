@@ -28,7 +28,7 @@ export function LanguageSwitcher({
     >
       <Globe
         className={cn(
-          "ml-1.5 h-3.5 w-3.5 shrink-0",
+          "ml-1.5 hidden h-3.5 w-3.5 shrink-0 sm:block",
           onDark ? "text-primary-foreground/70" : "text-muted-foreground",
         )}
         aria-hidden="true"
@@ -44,7 +44,7 @@ export function LanguageSwitcher({
             aria-pressed={active}
             title={entry.label}
             className={cn(
-              "rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide transition-colors",
+              "rounded-full px-2 py-1 text-[0.65rem] font-bold uppercase tracking-wide transition-colors sm:px-2.5 sm:text-xs",
               active
                 ? "bg-accent text-accent-foreground"
                 : onDark

@@ -45,14 +45,20 @@ export function Contact() {
                 <Phone className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
                 <div className="min-w-0">
                   <div className="font-medium">{contactInfo.labels.phone}</div>
-                  <a
-                    href={contactInfo.phone.href}
-                    className="text-muted-foreground transition-colors hover:text-accent"
-                  >
-                    {contactInfo.phone.display}
-                  </a>
+                  <div className="flex flex-col gap-1">
+                    {contactInfo.phones.map((entry) => (
+                      <a
+                        key={entry.href}
+                        href={entry.href}
+                        className="w-fit text-muted-foreground transition-colors hover:text-accent"
+                      >
+                        {entry.display}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </li>
+
               <li className="flex gap-4">
                 <Mail className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
                 <div className="min-w-0">

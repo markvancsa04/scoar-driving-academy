@@ -40,12 +40,12 @@ export function Navbar() {
       )}
     >
       <div className="container-page">
-        <div className="grid h-24 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:h-28 xl:grid-cols-[auto_minmax(0,1fr)_auto]">
+        <div className="grid h-24 grid-cols-[minmax(0,1fr)_auto] items-center gap-2 sm:h-28 sm:gap-4 xl:grid-cols-[auto_minmax(0,1fr)_auto]">
           <Link to="/" hash="acasa" className="flex min-w-0 items-center gap-3 sm:gap-4">
-            <span className="flex min-w-0 flex-col items-start gap-1">
+            <span className="flex min-w-0 flex-col items-center gap-1">
               <span
                 className={cn(
-                  "grid h-14 w-[224px] shrink-0 place-items-center rounded-xl p-1 transition-colors sm:h-16 sm:w-[256px] xl:h-[72px] xl:w-[288px]",
+                  "grid aspect-[4/1] w-[8.5rem] min-w-[7.5rem] max-w-full place-items-center rounded-xl p-0.5 transition-colors sm:w-[15rem] sm:p-1 xl:w-[18rem]",
                   solid ? "bg-card ring-1 ring-border" : "bg-primary-foreground/90 backdrop-blur",
                 )}
               >
@@ -58,16 +58,17 @@ export function Navbar() {
               </span>
               <span
                 className={cn(
-                  "block whitespace-nowrap font-display text-sm font-bold uppercase leading-tight tracking-tight sm:text-base",
+                  "block max-w-full truncate text-center font-display text-[0.6rem] font-bold uppercase leading-tight tracking-tight sm:text-sm md:text-base",
                   solid ? "text-foreground" : "text-primary-foreground",
                 )}
               >
-                       SCOBAR AUTÓSISKOLA
+                SCOBAR AUTÓSISKOLA
               </span>
+
             </span>
             <span
               className={cn(
-                "hidden min-w-0 truncate text-[0.7rem] uppercase tracking-[0.18em] lg:block",
+                "hidden min-w-0 truncate text-[0.7rem] uppercase tracking-[0.18em] 2xl:block",
                 solid ? "text-muted-foreground" : "text-primary-foreground/70",
               )}
             >
@@ -85,7 +86,7 @@ export function Navbar() {
                 className={cn(
                   "whitespace-nowrap rounded-full px-2 py-2 text-[0.78rem] font-medium transition-colors 2xl:px-3 2xl:text-sm",
                   // Secondary links only appear once there is room for them.
-                  index >= 5 && index < navigation.length - 1 && "hidden",
+                  index >= 4 && index < navigation.length - 1 && "hidden 2xl:block",
                   solid
                     ? "text-muted-foreground hover:bg-muted hover:text-foreground"
                     : "text-primary-foreground/80 hover:bg-primary-foreground/10 hover:text-primary-foreground",
@@ -97,37 +98,48 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <a
-              href={contactInfo.phone.href}
-              className={cn(
-                "hidden items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold transition-colors sm:inline-flex xl:hidden",
-                solid ? "text-foreground hover:text-accent" : "text-primary-foreground hover:text-accent",
-              )}
-            >
-              <Phone className="h-4 w-4" aria-hidden="true" />
-              {contactInfo.phone.display}
-            </a>
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
+            <div className="flex shrink-0 flex-col items-end gap-0.5">
 
-            <LanguageSwitcher onDark={!solid} className="hidden sm:inline-flex" />
-            <ButtonLink href={navCta.href} variant="accent" className="hidden md:inline-flex">
-              {navCta.label}
-            </ButtonLink>
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-label={open ? ui("menuClose") : ui("menuOpen")}
-              aria-expanded={open}
-              className={cn(
-                "grid h-11 w-11 shrink-0 place-items-center rounded-xl border transition-colors xl:hidden",
-                solid
-                  ? "border-border text-foreground"
-                  : "border-primary-foreground/25 text-primary-foreground",
-              )}
-            >
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+              {contactInfo.phones.map((entry) => (
+                <a
+                  key={entry.href}
+                  href={entry.href}
+                  className={cn(
+                    "inline-flex items-center gap-1 whitespace-nowrap text-[0.62rem] font-semibold leading-tight transition-colors sm:gap-1.5 sm:text-sm",
+                    solid
+                      ? "text-foreground hover:text-accent"
+                      : "text-primary-foreground hover:text-accent",
+                  )}
+                >
+                  <Phone className="hidden h-3.5 w-3.5 shrink-0 sm:inline-block sm:h-4 sm:w-4" aria-hidden="true" />
+                  {entry.display}
+                </a>
+              ))}
+            </div>
+
+            <div className="flex flex-col items-end gap-1.5 sm:flex-row sm:items-center sm:gap-2">
+              <LanguageSwitcher onDark={!solid} />
+              <ButtonLink href={navCta.href} variant="accent" className="hidden md:inline-flex">
+                {navCta.label}
+              </ButtonLink>
+              <button
+                type="button"
+                onClick={() => setOpen((v) => !v)}
+                aria-label={open ? ui("menuClose") : ui("menuOpen")}
+                aria-expanded={open}
+                className={cn(
+                  "grid h-10 w-10 shrink-0 place-items-center rounded-xl border transition-colors sm:h-11 sm:w-11 xl:hidden",
+                  solid
+                    ? "border-border text-foreground"
+                    : "border-primary-foreground/25 text-primary-foreground",
+                )}
+              >
+                {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
 
