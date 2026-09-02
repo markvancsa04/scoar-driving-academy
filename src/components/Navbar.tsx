@@ -98,8 +98,9 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="flex flex-col items-end gap-0.5">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
+            <div className="flex shrink-0 flex-col items-end gap-0.5">
+
               {contactInfo.phones.map((entry) => (
                 <a
                   key={entry.href}
