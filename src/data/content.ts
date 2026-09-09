@@ -22,6 +22,7 @@
 import { useMemo } from "react";
 import * as site from "@/content/site";
 import { DEFAULT_LANGUAGE, resolveContent, useLanguage } from "@/lib/i18n";
+import { applyOverlay, useCmsSnapshot, type CmsSnapshot } from "@/lib/cms/overlay";
 import type {
   FaqItem as RawFaqItem,
   ImageAsset as RawImageAsset,
