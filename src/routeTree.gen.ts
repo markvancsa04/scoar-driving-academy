@@ -15,6 +15,9 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as OktatoinkRouteImport } from './routes/oktatoink'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminMediaRouteImport } from './routes/_authenticated/admin/media'
+import { Route as AuthenticatedAdminCollectionsKeyRouteImport } from './routes/_authenticated/admin/collections.$key'
+import { Route as AuthenticatedAdminSectionsKeyRouteImport } from './routes/_authenticated/admin/sections.$key'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -45,19 +48,42 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminMediaRoute = AuthenticatedAdminMediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminCollectionsKeyRoute =
+  AuthenticatedAdminCollectionsKeyRouteImport.update({
+    id: '/collections/$key',
+    path: '/collections/$key',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminSectionsKeyRoute =
+  AuthenticatedAdminSectionsKeyRouteImport.update({
+    id: '/sections/$key',
+    path: '/sections/$key',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/oktatoink': typeof OktatoinkRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/media': typeof AuthenticatedAdminMediaRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
+  '/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/oktatoink': typeof OktatoinkRoute
+  '/admin/media': typeof AuthenticatedAdminMediaRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
+  '/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -66,13 +92,31 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/oktatoink': typeof OktatoinkRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/admin/media': typeof AuthenticatedAdminMediaRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
+  '/_authenticated/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/oktatoink' | '/admin' | '/admin/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/oktatoink'
+    | '/admin'
+    | '/admin/media'
+    | '/admin/'
+    | '/admin/collections/$key'
+    | '/admin/sections/$key'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/oktatoink' | '/admin'
+  to:
+    | '/'
+    | '/auth'
+    | '/oktatoink'
+    | '/admin/media'
+    | '/admin'
+    | '/admin/collections/$key'
+    | '/admin/sections/$key'
   id:
     | '__root__'
     | '/'
@@ -80,7 +124,10 @@ export interface FileRouteTypes {
     | '/auth'
     | '/oktatoink'
     | '/_authenticated/admin'
+    | '/_authenticated/admin/media'
     | '/_authenticated/admin/'
+    | '/_authenticated/admin/collections/$key'
+    | '/_authenticated/admin/sections/$key'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -134,15 +181,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/media': {
+      id: '/_authenticated/admin/media'
+      path: '/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AuthenticatedAdminMediaRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/collections/$key': {
+      id: '/_authenticated/admin/collections/$key'
+      path: '/collections/$key'
+      fullPath: '/admin/collections/$key'
+      preLoaderRoute: typeof AuthenticatedAdminCollectionsKeyRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/sections/$key': {
+      id: '/_authenticated/admin/sections/$key'
+      path: '/sections/$key'
+      fullPath: '/admin/sections/$key'
+      preLoaderRoute: typeof AuthenticatedAdminSectionsKeyRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminMediaRoute: typeof AuthenticatedAdminMediaRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminCollectionsKeyRoute: typeof AuthenticatedAdminCollectionsKeyRoute
+  AuthenticatedAdminSectionsKeyRoute: typeof AuthenticatedAdminSectionsKeyRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminMediaRoute: AuthenticatedAdminMediaRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminCollectionsKeyRoute: AuthenticatedAdminCollectionsKeyRoute,
+  AuthenticatedAdminSectionsKeyRoute: AuthenticatedAdminSectionsKeyRoute,
 }
 
 const AuthenticatedAdminRouteWithChildren =
