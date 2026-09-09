@@ -522,6 +522,33 @@ export const vehicles: Vehicle[] = [
       },
     },
   },
+  {
+    id: "vehicle-4",
+    name: { hu: "", ro: "" },
+    transmission: { hu: "", ro: "" },
+    fuel: { hu: "", ro: "" },
+    description: { hu: "", ro: "" },
+    specs: [],
+    image: { alt: { hu: "", ro: "" } },
+  },
+  {
+    id: "vehicle-5",
+    name: { hu: "", ro: "" },
+    transmission: { hu: "", ro: "" },
+    fuel: { hu: "", ro: "" },
+    description: { hu: "", ro: "" },
+    specs: [],
+    image: { alt: { hu: "", ro: "" } },
+  },
+  {
+    id: "vehicle-6",
+    name: { hu: "", ro: "" },
+    transmission: { hu: "", ro: "" },
+    fuel: { hu: "", ro: "" },
+    description: { hu: "", ro: "" },
+    specs: [],
+    image: { alt: { hu: "", ro: "" } },
+  },
 ];
 
 /* ------------------------------------------------------------------ */
