@@ -10,11 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as OktatoinkRouteImport } from './routes/oktatoink'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminMediaRouteImport } from './routes/_authenticated/admin/media'
+import { Route as AuthenticatedAdminCollectionsKeyRouteImport } from './routes/_authenticated/admin/collections.$key'
+import { Route as AuthenticatedAdminSectionsKeyRouteImport } from './routes/_authenticated/admin/sections.$key'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OktatoinkRoute = OktatoinkRouteImport.update({
@@ -22,30 +38,102 @@ const OktatoinkRoute = OktatoinkRouteImport.update({
   path: '/oktatoink',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminMediaRoute = AuthenticatedAdminMediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminCollectionsKeyRoute =
+  AuthenticatedAdminCollectionsKeyRouteImport.update({
+    id: '/collections/$key',
+    path: '/collections/$key',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminSectionsKeyRoute =
+  AuthenticatedAdminSectionsKeyRouteImport.update({
+    id: '/sections/$key',
+    path: '/sections/$key',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/oktatoink': typeof OktatoinkRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/media': typeof AuthenticatedAdminMediaRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
+  '/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/oktatoink': typeof OktatoinkRoute
+  '/admin/media': typeof AuthenticatedAdminMediaRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
+  '/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/oktatoink': typeof OktatoinkRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/admin/media': typeof AuthenticatedAdminMediaRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
+  '/_authenticated/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/oktatoink'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/oktatoink'
+    | '/admin'
+    | '/admin/media'
+    | '/admin/'
+    | '/admin/collections/$key'
+    | '/admin/sections/$key'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/oktatoink'
-  id: '__root__' | '/' | '/oktatoink'
+  to:
+    | '/'
+    | '/auth'
+    | '/oktatoink'
+    | '/admin/media'
+    | '/admin'
+    | '/admin/collections/$key'
+    | '/admin/sections/$key'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/oktatoink'
+    | '/_authenticated/admin'
+    | '/_authenticated/admin/media'
+    | '/_authenticated/admin/'
+    | '/_authenticated/admin/collections/$key'
+    | '/_authenticated/admin/sections/$key'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   OktatoinkRoute: typeof OktatoinkRoute
 }
 
@@ -58,6 +146,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/oktatoink': {
       id: '/oktatoink'
       path: '/oktatoink'
@@ -65,11 +167,76 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OktatoinkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/media': {
+      id: '/_authenticated/admin/media'
+      path: '/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AuthenticatedAdminMediaRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/collections/$key': {
+      id: '/_authenticated/admin/collections/$key'
+      path: '/collections/$key'
+      fullPath: '/admin/collections/$key'
+      preLoaderRoute: typeof AuthenticatedAdminCollectionsKeyRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/sections/$key': {
+      id: '/_authenticated/admin/sections/$key'
+      path: '/sections/$key'
+      fullPath: '/admin/sections/$key'
+      preLoaderRoute: typeof AuthenticatedAdminSectionsKeyRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminMediaRoute: typeof AuthenticatedAdminMediaRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminCollectionsKeyRoute: typeof AuthenticatedAdminCollectionsKeyRoute
+  AuthenticatedAdminSectionsKeyRoute: typeof AuthenticatedAdminSectionsKeyRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminMediaRoute: AuthenticatedAdminMediaRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminCollectionsKeyRoute: AuthenticatedAdminCollectionsKeyRoute,
+  AuthenticatedAdminSectionsKeyRoute: AuthenticatedAdminSectionsKeyRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   OktatoinkRoute: OktatoinkRoute,
 }
 export const routeTree = rootRouteImport

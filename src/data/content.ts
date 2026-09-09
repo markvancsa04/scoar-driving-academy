@@ -22,6 +22,7 @@
 import { useMemo } from "react";
 import * as site from "@/content/site";
 import { DEFAULT_LANGUAGE, resolveContent, useLanguage } from "@/lib/i18n";
+import { applyOverlay, useCmsSnapshot, type CmsSnapshot } from "@/lib/cms/overlay";
 import type {
   FaqItem as RawFaqItem,
   ImageAsset as RawImageAsset,
@@ -54,7 +55,7 @@ export type NewsItem = Resolved<RawNewsItem>;
 /* Raw content tree (Supabase replaces this object, nothing else)      */
 /* ------------------------------------------------------------------ */
 
-const rawContent = {
+export const rawContent = {
   siteSettings: site.siteSettings,
   navigation: site.navigation,
   navCta: site.navCta,
@@ -87,9 +88,12 @@ const rawContent = {
 
 export type SiteContent = Resolved<typeof rawContent>;
 
-/** Resolves the whole content tree for a language. */
-export function getSiteContent(language: Language = DEFAULT_LANGUAGE): SiteContent {
-  return resolveContent(rawContent, language);
+/** Resolves the whole content tree for a language, admin edits applied. */
+export function getSiteContent(
+  language: Language = DEFAULT_LANGUAGE,
+  snapshot?: CmsSnapshot | null,
+): SiteContent {
+  return resolveContent(applyOverlay(rawContent, snapshot), language);
 }
 
 /** Content in the default language — used for SSR metadata (head, JSON-LD). */
@@ -98,5 +102,6 @@ export const defaultContent = getSiteContent(DEFAULT_LANGUAGE);
 /** The hook every component uses to read content. */
 export function useSiteContent(): SiteContent {
   const { language } = useLanguage();
-  return useMemo(() => getSiteContent(language), [language]);
+  const snapshot = useCmsSnapshot();
+  return useMemo(() => getSiteContent(language, snapshot), [language, snapshot]);
 }

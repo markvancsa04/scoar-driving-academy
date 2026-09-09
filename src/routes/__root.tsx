@@ -13,6 +13,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider, useStandaloneUi } from "../lib/i18n";
 import { LocalizedHead } from "../components/LocalizedHead";
+import { CmsProvider, EMPTY_SNAPSHOT, type CmsSnapshot } from "../lib/cms/overlay";
+import { getCmsSnapshot } from "../lib/cms.functions";
 
 function NotFoundComponent() {
   const ui = useStandaloneUi();
@@ -100,6 +102,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
   }),
 
+  loader: async (): Promise<CmsSnapshot> => {
+    try {
+      return await getCmsSnapshot();
+    } catch {
+      return EMPTY_SNAPSHOT;
+    }
+  },
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
@@ -122,14 +132,17 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const snapshot = Route.useLoaderData();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <LocalizedHead />
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-      </LanguageProvider>
+      <CmsProvider snapshot={snapshot ?? null}>
+        <LanguageProvider>
+          <LocalizedHead />
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </LanguageProvider>
+      </CmsProvider>
     </QueryClientProvider>
   );
 }
