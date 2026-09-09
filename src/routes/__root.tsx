@@ -102,6 +102,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
   }),
 
+  loader: async (): Promise<CmsSnapshot> => {
+    try {
+      return await getCmsSnapshot();
+    } catch {
+      return EMPTY_SNAPSHOT;
+    }
+  },
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
