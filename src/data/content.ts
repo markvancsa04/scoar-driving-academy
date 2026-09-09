@@ -54,7 +54,7 @@ export type NewsItem = Resolved<RawNewsItem>;
 /* Raw content tree (Supabase replaces this object, nothing else)      */
 /* ------------------------------------------------------------------ */
 
-const rawContent = {
+export const rawContent = {
   siteSettings: site.siteSettings,
   navigation: site.navigation,
   navCta: site.navCta,
