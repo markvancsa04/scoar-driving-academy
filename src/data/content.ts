@@ -87,9 +87,12 @@ export const rawContent = {
 
 export type SiteContent = Resolved<typeof rawContent>;
 
-/** Resolves the whole content tree for a language. */
-export function getSiteContent(language: Language = DEFAULT_LANGUAGE): SiteContent {
-  return resolveContent(rawContent, language);
+/** Resolves the whole content tree for a language, admin edits applied. */
+export function getSiteContent(
+  language: Language = DEFAULT_LANGUAGE,
+  snapshot?: CmsSnapshot | null,
+): SiteContent {
+  return resolveContent(applyOverlay(rawContent, snapshot), language);
 }
 
 /** Content in the default language — used for SSR metadata (head, JSON-LD). */
@@ -98,5 +101,6 @@ export const defaultContent = getSiteContent(DEFAULT_LANGUAGE);
 /** The hook every component uses to read content. */
 export function useSiteContent(): SiteContent {
   const { language } = useLanguage();
-  return useMemo(() => getSiteContent(language), [language]);
+  const snapshot = useCmsSnapshot();
+  return useMemo(() => getSiteContent(language, snapshot), [language, snapshot]);
 }
