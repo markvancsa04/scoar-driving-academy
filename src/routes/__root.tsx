@@ -13,6 +13,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider, useStandaloneUi } from "../lib/i18n";
 import { LocalizedHead } from "../components/LocalizedHead";
+import { CmsProvider, EMPTY_SNAPSHOT, type CmsSnapshot } from "../lib/cms/overlay";
+import { getCmsSnapshot } from "../lib/cms.functions";
 
 function NotFoundComponent() {
   const ui = useStandaloneUi();
