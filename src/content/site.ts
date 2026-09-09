@@ -59,7 +59,7 @@ export type * from "./types";
 /* ------------------------------------------------------------------ */
 
 export const siteSettings: SiteSettings = {
-  name: { hu: "SCOBAR AUTÓSISKOLA", ro: "SCOBAR ȘCOALĂ AUTO" },
+  name: { hu: "SCOBAR AUTÓSISKOLA", ro: "SCOBAR ȘCOALĂ DE ȘOFERI" },
   shortName: "SCOBAR",
   tagline: {
     hu: "Autósiskola Kézdivásárhelyen",
@@ -77,7 +77,7 @@ export const siteSettings: SiteSettings = {
   seo: {
     title: {
       hu: "SCOBAR AUTÓSISKOLA — Autósiskola Kézdivásárhelyen | B kategória",
-      ro: "SCOBAR ȘCOALĂ AUTO — Școală de șoferi în Târgu Secuiesc | Categoria B",
+      ro: "SCOBAR ȘCOALĂ DE ȘOFERI — Școală de șoferi în Târgu Secuiesc | Categoria B",
     },
     description: {
       hu: "B kategóriás jogosítvány Kézdivásárhelyen. Tapasztalt oktatók, modern gépkocsik, türelmes és gyakorlatorientált képzés. Jelentkezz még ma!",
@@ -85,7 +85,7 @@ export const siteSettings: SiteSettings = {
     },
     ogTitle: {
       hu: "SCOBAR AUTÓSISKOLA — Tanulj vezetni magabiztosan",
-      ro: "SCOBAR ȘCOALĂ AUTO — Învață să conduci cu încredere",
+      ro: "SCOBAR ȘCOALĂ DE ȘOFERI — Învață să conduci cu încredere",
     },
     ogDescription: {
       hu: "B kategóriás vezetői engedély megszerzése Kézdivásárhelyen tapasztalt oktatókkal és modern gépkocsikkal.",
@@ -143,7 +143,7 @@ export const heroContent = {
     src: heroAsset.url,
     alt: {
       hu: "A SCOBAR AUTÓSISKOLA fehér BMW oktatóautója Kézdivásárhely belvárosában",
-      ro: "Mașina de școală BMW albă a SCOBAR ȘCOALĂ AUTO în centrul orașului Târgu Secuiesc",
+      ro: "Mașina de școală BMW albă a SCOBAR ȘCOALĂ DE ȘOFERI în centrul orașului Târgu Secuiesc",
     },
   } as ImageAsset,
   trustIndicators: [
@@ -202,7 +202,7 @@ export const aboutContent = {
   paragraphs: [
     {
       hu: "A SCOBAR AUTÓSISKOLA célja, hogy Kézdivásárhelyen és környékén olyan sofőröket képezzen, akik nemcsak a vizsgát teljesítik sikeresen, hanem magabiztosan és felelősen közlekednek éveken át.",
-      ro: "SCOBAR ȘCOALĂ AUTO își propune să formeze în Târgu Secuiesc și în împrejurimi șoferi care nu doar promovează examenul, ci conduc responsabil și cu încredere ani la rând.",
+      ro: "SCOBAR ȘCOALĂ DE ȘOFERI își propune să formeze în Târgu Secuiesc și în împrejurimi șoferi care nu doar promovează examenul, ci conduc responsabil și cu încredere ani la rând.",
     },
     {
       hu: "Oktatóink türelmesek, érthetően magyaráznak, és minden tanulóval a saját tempójában haladnak. A modern oktatási módszereket a helyi utak valós ismeretével kötjük össze — ott gyakorolsz, ahol később vezetni fogsz.",
@@ -323,19 +323,19 @@ export const instructorsContent = {
   seo: {
     title: {
       hu: "Oktatóink — SCOBAR AUTÓSISKOLA Kézdivásárhely",
-      ro: "Instructorii noștri — SCOBAR ȘCOALĂ AUTO Târgu Secuiesc",
+      ro: "Instructorii noștri — SCOBAR ȘCOALĂ DE ȘOFERI Târgu Secuiesc",
     },
     description: {
       hu: "Ismerd meg a SCOBAR AUTÓSISKOLA teljes oktatói csapatát Kézdivásárhelyen: tapasztalt, türelmes B kategóriás oktatók.",
-      ro: "Cunoaște întreaga echipă de instructori SCOBAR ȘCOALĂ AUTO din Târgu Secuiesc: profesioniști răbdători, cu experiență, pentru categoria B.",
+      ro: "Cunoaște întreaga echipă de instructori SCOBAR ȘCOALĂ DE ȘOFERI din Târgu Secuiesc: profesioniști răbdători, cu experiență, pentru categoria B.",
     },
     ogTitle: {
       hu: "Oktatóink — SCOBAR AUTÓSISKOLA",
-      ro: "Instructorii noștri — SCOBAR ȘCOALĂ AUTO",
+      ro: "Instructorii noștri — SCOBAR ȘCOALĂ DE ȘOFERI",
     },
     ogDescription: {
       hu: "A SCOBAR AUTÓSISKOLA oktatói: tapasztalt szakemberek, akik a te tempódhoz igazodnak.",
-      ro: "Instructorii SCOBAR ȘCOALĂ AUTO: profesioniști cu experiență, care se adaptează ritmului tău.",
+      ro: "Instructorii SCOBAR ȘCOALĂ DE ȘOFERI: profesioniști cu experiență, care se adaptează ritmului tău.",
     },
   },
 };
@@ -934,7 +934,7 @@ export const contactInfo = {
     directions: { hu: "Útvonaltervezés", ro: "Vezi traseul" },
     map: { hu: "térkép", ro: "hartă" },
   },
-  businessName: { hu: "SCOBAR AUTÓSISKOLA", ro: "SCOBAR ȘCOALĂ AUTO" },
+  businessName: { hu: "SCOBAR AUTÓSISKOLA", ro: "SCOBAR ȘCOALĂ DE ȘOFERI" },
   address: {
     street: "Curtea 39",
     city: "Târgu Secuiesc (Kézdivásárhely)",
@@ -1026,7 +1026,7 @@ export const footerContent = {
   contactTitle: { hu: "Kapcsolat", ro: "Contact" },
   copyright: {
     hu: `© ${siteSettings.copyrightYear} SCOBAR AUTÓSISKOLA. Minden jog fenntartva.`,
-    ro: `© ${siteSettings.copyrightYear} SCOBAR ȘCOALĂ AUTO. Toate drepturile rezervate.`,
+    ro: `© ${siteSettings.copyrightYear} SCOBAR ȘCOALĂ DE ȘOFERI. Toate drepturile rezervate.`,
   },
   legalLinks: [
     { label: { hu: "Adatvédelmi tájékoztató", ro: "Politica de confidențialitate" }, href: "#contact" },
