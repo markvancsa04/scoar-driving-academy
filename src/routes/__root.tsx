@@ -132,14 +132,17 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const snapshot = Route.useLoaderData();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <LocalizedHead />
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-      </LanguageProvider>
+      <CmsProvider snapshot={snapshot ?? null}>
+        <LanguageProvider>
+          <LocalizedHead />
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </LanguageProvider>
+      </CmsProvider>
     </QueryClientProvider>
   );
 }
