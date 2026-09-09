@@ -59,7 +59,7 @@ export type * from "./types";
 /* ------------------------------------------------------------------ */
 
 export const siteSettings: SiteSettings = {
-  name: { hu: "SCOBAR AUTÓSISKOLA", ro: "ȘCOALĂ DE ȘOFERI SCOBAR" },
+  name: { hu: "SCOBAR AUTÓSISKOLA", ro: "ȘCOALA DE ȘOFERI SCOBAR" },
   shortName: "SCOBAR",
   tagline: {
     hu: "Autósiskola Kézdivásárhelyen",
