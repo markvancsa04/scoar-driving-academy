@@ -37,10 +37,27 @@ export function Contact() {
     onBlur: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => applyValidity(e.currentTarget),
   };
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
-    e.currentTarget.reset();
+    const formEl = e.currentTarget;
+    const values = new FormData(formEl);
+    setError(null);
+    setSending(true);
+    try {
+      await submitContactMessage({
+        name: String(values.get("name") ?? ""),
+        email: String(values.get("email") ?? ""),
+        phone: String(values.get("phone") ?? ""),
+        message: String(values.get("message") ?? ""),
+        language,
+      });
+      setSent(true);
+      formEl.reset();
+    } catch {
+      setError(ui("sendFailed"));
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
