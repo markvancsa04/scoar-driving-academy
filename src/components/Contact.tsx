@@ -6,6 +6,8 @@ import { Reveal } from "./Reveal";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
 import { ActionLink, isDeadHref } from "./ActionLink";
+import { useLanguage, useUi } from "@/lib/i18n";
+import { submitContactMessage } from "@/lib/submissions";
 
 const fieldClass =
   "w-full rounded-xl border border-input bg-card px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-accent focus:ring-2 focus:ring-accent/20";
@@ -13,6 +15,10 @@ const fieldClass =
 export function Contact() {
   const { contactInfo, socialLinks } = useSiteContent();
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const { language } = useLanguage();
+  const ui = useUi();
   const form = contactInfo.form;
 
   /** Localized native validation messages (browser defaults are OS-language). */
