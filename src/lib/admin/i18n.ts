@@ -9,6 +9,7 @@
 import { useCallback } from "react";
 import { useLanguage, t } from "@/lib/i18n";
 import type { Localized } from "@/content/types";
+import { labelFor } from "@/lib/cms/model";
 
 export const adminUi = {
   adminTitle: { hu: "Adminisztráció", ro: "Administrare" },
@@ -116,4 +117,31 @@ export type AdminKey = keyof typeof adminUi;
 export function useAdminT() {
   const { language } = useLanguage();
   return useCallback((key: AdminKey) => t(adminUi[key], language), [language]);
+}
+
+/* Extra strings used by the media library and pickers. */
+export const adminExtra = {
+  mediaIntro: {
+    hu: "Töltsd fel egyszer a fotókat, és használd őket bárhol az oldalon.",
+    ro: "Încarcă fotografii o singură dată și folosește-le oriunde pe site.",
+  },
+  uploadPhotos: { hu: "Fotók feltöltése", ro: "Încarcă fotografii" },
+  libraryEmpty: { hu: "A médiatár üres.", ro: "Biblioteca este goală." },
+  deleteImage: { hu: "Kép törlése", ro: "Șterge imaginea" },
+  noImage: { hu: "nincs kép", ro: "fără imagine" },
+  pathPlaceholder: { hu: "fájlútvonal vagy https://… cím", ro: "cale fișier sau adresă https://…" },
+  uploadFailed: { hu: "A feltöltés nem sikerült", ro: "Încărcare eșuată" },
+  altHu: { hu: "Alternatív szöveg (HU)", ro: "Text alternativ (HU)" },
+  altRo: { hu: "Alternatív szöveg (RO)", ro: "Text alternativ (RO)" },
+} satisfies Record<string, Localized>;
+
+export function useAdminExtra() {
+  const { language } = useLanguage();
+  return useCallback((key: keyof typeof adminExtra) => t(adminExtra[key], language), [language]);
+}
+
+/** Translated label for a content field / section key. */
+export function useLabel() {
+  const { language } = useLanguage();
+  return useCallback((key: string) => labelFor(key, language), [language]);
 }
