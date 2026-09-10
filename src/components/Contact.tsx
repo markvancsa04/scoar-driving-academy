@@ -174,7 +174,7 @@ export function Contact() {
 
         <Reveal delay={80}>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={(e) => void handleSubmit(e)}
             className="rounded-3xl border border-border bg-surface p-7 shadow-card sm:p-9"
           >
             <div className="grid gap-5 sm:grid-cols-2">
@@ -234,9 +234,24 @@ export function Contact() {
               </div>
             </div>
 
-            <Button type="submit" variant="accent" size="lg" className="mt-7 w-full">
-              {contactInfo.form.submitLabel}
+            <Button
+              type="submit"
+              variant="accent"
+              size="lg"
+              className="mt-7 w-full"
+              disabled={sending}
+            >
+              {sending ? ui("sending") : contactInfo.form.submitLabel}
             </Button>
+
+            {error && (
+              <p
+                role="alert"
+                className="mt-4 rounded-xl bg-destructive/10 px-4 py-3 text-sm font-medium text-destructive"
+              >
+                {error}
+              </p>
+            )}
 
             {sent && (
               <p
