@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
 import { FieldEditor } from "@/components/admin/FieldEditor";
 import { db } from "@/lib/cms/db";
-import { COLLECTIONS, labelFor, type CollectionKey, type Json } from "@/lib/cms/model";
+import { COLLECTIONS, type CollectionKey, type Json } from "@/lib/cms/model";
+import { useAdminT, useLabel } from "@/lib/admin/i18n";
 import { rawContent } from "@/data/content";
 
 export const Route = createFileRoute("/_authenticated/admin/collections/$key")({
@@ -23,6 +24,8 @@ function emptyFrom(template: Json): Json {
 
 function CollectionEditor() {
   const { key } = Route.useParams();
+  const T = useAdminT();
+  const label = useLabel();
   const collectionKey = key as CollectionKey;
   const table = COLLECTIONS[collectionKey];
   const list = (rawContent as Record<string, Json>)[collectionKey];
@@ -58,7 +61,7 @@ function CollectionEditor() {
       .from(table)
       .update({ data: row.data, is_active: row.is_active, sort_order: row.sort_order })
       .eq("id", row.id);
-    setMessage(error ? error.message : "Salvat.");
+    setMessage(error ? error.message : T("savedShort"));
   }
 
   async function addRow() {
@@ -89,26 +92,24 @@ function CollectionEditor() {
     <div className="space-y-6">
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="font-display text-2xl font-semibold">{labelFor(collectionKey)}</h1>
-          <p className="text-sm text-muted-foreground">
-            Adaugă, editează, reordonează sau dezactivează elementele.
-          </p>
+          <h1 className="font-display text-2xl font-semibold">{label(collectionKey)}</h1>
+          <p className="text-sm text-muted-foreground">{T("listIntro")}</p>
         </div>
         <button
           onClick={() => void addRow()}
           className="rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground"
         >
-          + Element nou
+          {T("newItem")}
         </button>
       </header>
 
       {message && <p className="text-sm text-accent">{message}</p>}
 
       {loading ? (
-        <p className="text-sm text-muted-foreground">Se încarcă…</p>
+        <p className="text-sm text-muted-foreground">{T("loading")}</p>
       ) : rows.length === 0 ? (
         <p className="rounded-xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground">
-          Nu există elemente. Importă conținutul actual din Panoul general sau adaugă unul nou.
+          {T("emptyList")}
         </p>
       ) : (
         <ul className="space-y-5">
@@ -123,11 +124,13 @@ function CollectionEditor() {
                       checked={row.is_active}
                       onChange={(e) =>
                         setRows((r) =>
-                          r.map((x) => (x.id === row.id ? { ...x, is_active: e.target.checked } : x)),
+                          r.map((x) =>
+                            x.id === row.id ? { ...x, is_active: e.target.checked } : x,
+                          ),
                         )
                       }
                     />
-                    Activ
+                    {T("active")}
                   </label>
                   <button
                     onClick={() => void move(index, -1)}
@@ -145,13 +148,13 @@ function CollectionEditor() {
                     onClick={() => void saveRow(row)}
                     className="rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground"
                   >
-                    Salvează
+                    {T("save")}
                   </button>
                   <button
                     onClick={() => void removeRow(row)}
                     className="rounded border border-border px-2 py-1 text-xs text-destructive"
                   >
-                    Șterge
+                    {T("delete")}
                   </button>
                 </div>
               </div>

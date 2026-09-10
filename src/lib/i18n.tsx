@@ -128,6 +128,25 @@ export const ui = {
   },
   retry: { hu: "Újrapróbálom", ro: "Încearcă din nou" },
   ratingLabel: { hu: "Értékelés", ro: "Evaluare" },
+  sending: { hu: "Küldés…", ro: "Se trimite…" },
+  sendFailed: {
+    hu: "Az üzenetet nem sikerült elküldeni. Kérjük, próbáld újra, vagy hívj minket telefonon.",
+    ro: "Mesajul nu a putut fi trimis. Te rugăm încearcă din nou sau sună-ne.",
+  },
+  reviewFormTitle: { hu: "Írd meg a véleményed", ro: "Scrie-ne părerea ta" },
+  reviewFormIntro: {
+    hu: "Az értékelés jóváhagyás után jelenik meg az oldalon.",
+    ro: "Recenzia apare pe site după aprobare.",
+  },
+  reviewName: { hu: "Neved", ro: "Numele tău" },
+  reviewLocation: { hu: "Helység (nem kötelező)", ro: "Localitate (opțional)" },
+  reviewText: { hu: "Véleményed", ro: "Părerea ta" },
+  reviewRating: { hu: "Csillagok", ro: "Stele" },
+  reviewSubmit: { hu: "Értékelés küldése", ro: "Trimite recenzia" },
+  reviewThanks: {
+    hu: "Köszönjük! Az értékelésed jóváhagyás után jelenik meg.",
+    ro: "Mulțumim! Recenzia ta va apărea după aprobare.",
+  },
 } satisfies Record<string, Localized>;
 
 /**

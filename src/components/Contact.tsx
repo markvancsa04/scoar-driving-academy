@@ -6,6 +6,8 @@ import { Reveal } from "./Reveal";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
 import { ActionLink, isDeadHref } from "./ActionLink";
+import { useLanguage, useUi } from "@/lib/i18n";
+import { submitContactMessage } from "@/lib/submissions";
 
 const fieldClass =
   "w-full rounded-xl border border-input bg-card px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-accent focus:ring-2 focus:ring-accent/20";
@@ -13,6 +15,10 @@ const fieldClass =
 export function Contact() {
   const { contactInfo, socialLinks } = useSiteContent();
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const { language } = useLanguage();
+  const ui = useUi();
   const form = contactInfo.form;
 
   /** Localized native validation messages (browser defaults are OS-language). */
@@ -33,14 +39,33 @@ export function Contact() {
   const validationProps = {
     onInvalid: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       applyValidity(e.currentTarget),
-    onInput: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => applyValidity(e.currentTarget),
-    onBlur: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => applyValidity(e.currentTarget),
+    onInput: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      applyValidity(e.currentTarget),
+    onBlur: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      applyValidity(e.currentTarget),
   };
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
-    e.currentTarget.reset();
+    const formEl = e.currentTarget;
+    const values = new FormData(formEl);
+    setError(null);
+    setSending(true);
+    try {
+      await submitContactMessage({
+        name: String(values.get("name") ?? ""),
+        email: String(values.get("email") ?? ""),
+        phone: String(values.get("phone") ?? ""),
+        message: String(values.get("message") ?? ""),
+        language,
+      });
+      setSent(true);
+      formEl.reset();
+    } catch {
+      setError(ui("sendFailed"));
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -116,15 +141,15 @@ export function Contact() {
                 {socialLinks
                   .filter((social) => !isDeadHref(social.href))
                   .map((social) => (
-                  <ActionLink
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="grid h-10 w-10 place-items-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <Icon name={social.icon} className="h-4 w-4" aria-hidden="true" />
-                  </ActionLink>
-                ))}
+                    <ActionLink
+                      key={social.label}
+                      href={social.href}
+                      aria-label={social.label}
+                      className="grid h-10 w-10 place-items-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+                    >
+                      <Icon name={social.icon} className="h-4 w-4" aria-hidden="true" />
+                    </ActionLink>
+                  ))}
               </div>
             )}
           </div>
@@ -151,7 +176,7 @@ export function Contact() {
 
         <Reveal delay={80}>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={(e) => void handleSubmit(e)}
             className="rounded-3xl border border-border bg-surface p-7 shadow-card sm:p-9"
           >
             <div className="grid gap-5 sm:grid-cols-2">
@@ -211,9 +236,24 @@ export function Contact() {
               </div>
             </div>
 
-            <Button type="submit" variant="accent" size="lg" className="mt-7 w-full">
-              {contactInfo.form.submitLabel}
+            <Button
+              type="submit"
+              variant="accent"
+              size="lg"
+              className="mt-7 w-full"
+              disabled={sending}
+            >
+              {sending ? ui("sending") : contactInfo.form.submitLabel}
             </Button>
+
+            {error && (
+              <p
+                role="alert"
+                className="mt-4 rounded-xl bg-destructive/10 px-4 py-3 text-sm font-medium text-destructive"
+              >
+                {error}
+              </p>
+            )}
 
             {sent && (
               <p

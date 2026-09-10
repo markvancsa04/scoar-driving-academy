@@ -1,13 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
 import { resolveMediaUrl } from "@/lib/media";
-import { deleteMedia, listMedia, updateMediaAlt, uploadMedia, type MediaRow } from "@/lib/cms/media";
+import { useAdminExtra, useAdminT } from "@/lib/admin/i18n";
+import {
+  deleteMedia,
+  listMedia,
+  updateMediaAlt,
+  uploadMedia,
+  type MediaRow,
+} from "@/lib/cms/media";
 
 export const Route = createFileRoute("/_authenticated/admin/media")({
   component: MediaLibrary,
 });
 
 function MediaLibrary() {
+  const T = useAdminT();
+  const X = useAdminExtra();
   const [rows, setRows] = useState<MediaRow[]>([]);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -16,7 +25,7 @@ function MediaLibrary() {
     try {
       setRows(await listMedia());
     } catch (e) {
-      setMessage(e instanceof Error ? e.message : "Eroare");
+      setMessage(e instanceof Error ? e.message : T("error"));
     }
   }, []);
 
@@ -31,7 +40,7 @@ function MediaLibrary() {
       for (const file of Array.from(files)) await uploadMedia(file, "library");
       await load();
     } catch (e) {
-      setMessage(e instanceof Error ? e.message : "Încărcare eșuată");
+      setMessage(e instanceof Error ? e.message : X("uploadFailed"));
     } finally {
       setBusy(false);
     }
@@ -41,13 +50,11 @@ function MediaLibrary() {
     <div className="space-y-6">
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="font-display text-2xl font-semibold">Bibliotecă media</h1>
-          <p className="text-sm text-muted-foreground">
-            Încarcă fotografii o singură dată și folosește-le oriunde pe site.
-          </p>
+          <h1 className="font-display text-2xl font-semibold">{T("mediaLibrary")}</h1>
+          <p className="text-sm text-muted-foreground">{X("mediaIntro")}</p>
         </div>
         <label className="cursor-pointer rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground">
-          {busy ? "Se încarcă…" : "Încarcă fotografii"}
+          {busy ? T("uploading") : X("uploadPhotos")}
           <input
             type="file"
             accept="image/*"
@@ -74,7 +81,7 @@ function MediaLibrary() {
               <p className="truncate text-[11px] text-muted-foreground">{row.storage_path}</p>
               <input
                 defaultValue={row.alt?.hu ?? ""}
-                placeholder="Text alternativ (HU)"
+                placeholder={X("altHu")}
                 onBlur={(e) =>
                   void updateMediaAlt(row.id, { hu: e.target.value, ro: row.alt?.ro ?? "" })
                 }
@@ -82,7 +89,7 @@ function MediaLibrary() {
               />
               <input
                 defaultValue={row.alt?.ro ?? ""}
-                placeholder="Text alternativ (RO)"
+                placeholder={X("altRo")}
                 onBlur={(e) =>
                   void updateMediaAlt(row.id, { hu: row.alt?.hu ?? "", ro: e.target.value })
                 }
@@ -95,7 +102,7 @@ function MediaLibrary() {
                 }}
                 className="rounded border border-border px-2 py-1 text-xs text-destructive"
               >
-                Șterge
+                {T("delete")}
               </button>
             </div>
           </li>
@@ -104,7 +111,7 @@ function MediaLibrary() {
 
       {rows.length === 0 && (
         <p className="rounded-xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground">
-          Biblioteca este goală.
+          {X("libraryEmpty")}
         </p>
       )}
     </div>

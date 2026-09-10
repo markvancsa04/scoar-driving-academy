@@ -25,7 +25,7 @@ export async function importStaticContent(onProgress?: (msg: string) => void): P
       .select("id", { count: "exact", head: true });
     if (countError) throw new Error(`${table}: ${countError.message}`);
     if ((count ?? 0) > 0) {
-      onProgress?.(`${key} — există deja`);
+      onProgress?.(`${key} ✓`);
       continue;
     }
 
