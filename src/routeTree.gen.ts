@@ -15,7 +15,10 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as OktatoinkRouteImport } from './routes/oktatoink'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminApplicationsRouteImport } from './routes/_authenticated/admin/applications'
 import { Route as AuthenticatedAdminMediaRouteImport } from './routes/_authenticated/admin/media'
+import { Route as AuthenticatedAdminMessagesRouteImport } from './routes/_authenticated/admin/messages'
+import { Route as AuthenticatedAdminReviewsRouteImport } from './routes/_authenticated/admin/reviews'
 import { Route as AuthenticatedAdminCollectionsKeyRouteImport } from './routes/_authenticated/admin/collections.$key'
 import { Route as AuthenticatedAdminSectionsKeyRouteImport } from './routes/_authenticated/admin/sections.$key'
 
@@ -48,11 +51,29 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminApplicationsRoute =
+  AuthenticatedAdminApplicationsRouteImport.update({
+    id: '/applications',
+    path: '/applications',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminMediaRoute = AuthenticatedAdminMediaRouteImport.update({
   id: '/media',
   path: '/media',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminMessagesRoute =
+  AuthenticatedAdminMessagesRouteImport.update({
+    id: '/messages',
+    path: '/messages',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminReviewsRoute =
+  AuthenticatedAdminReviewsRouteImport.update({
+    id: '/reviews',
+    path: '/reviews',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminCollectionsKeyRoute =
   AuthenticatedAdminCollectionsKeyRouteImport.update({
     id: '/collections/$key',
@@ -71,7 +92,10 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/oktatoink': typeof OktatoinkRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/applications': typeof AuthenticatedAdminApplicationsRoute
   '/admin/media': typeof AuthenticatedAdminMediaRoute
+  '/admin/messages': typeof AuthenticatedAdminMessagesRoute
+  '/admin/reviews': typeof AuthenticatedAdminReviewsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
   '/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
@@ -80,7 +104,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/oktatoink': typeof OktatoinkRoute
+  '/admin/applications': typeof AuthenticatedAdminApplicationsRoute
   '/admin/media': typeof AuthenticatedAdminMediaRoute
+  '/admin/messages': typeof AuthenticatedAdminMessagesRoute
+  '/admin/reviews': typeof AuthenticatedAdminReviewsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
   '/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
@@ -92,7 +119,10 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/oktatoink': typeof OktatoinkRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/admin/applications': typeof AuthenticatedAdminApplicationsRoute
   '/_authenticated/admin/media': typeof AuthenticatedAdminMediaRoute
+  '/_authenticated/admin/messages': typeof AuthenticatedAdminMessagesRoute
+  '/_authenticated/admin/reviews': typeof AuthenticatedAdminReviewsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
   '/_authenticated/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
@@ -104,7 +134,10 @@ export interface FileRouteTypes {
     | '/auth'
     | '/oktatoink'
     | '/admin'
+    | '/admin/applications'
     | '/admin/media'
+    | '/admin/messages'
+    | '/admin/reviews'
     | '/admin/'
     | '/admin/collections/$key'
     | '/admin/sections/$key'
@@ -113,7 +146,10 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/oktatoink'
+    | '/admin/applications'
     | '/admin/media'
+    | '/admin/messages'
+    | '/admin/reviews'
     | '/admin'
     | '/admin/collections/$key'
     | '/admin/sections/$key'
@@ -124,7 +160,10 @@ export interface FileRouteTypes {
     | '/auth'
     | '/oktatoink'
     | '/_authenticated/admin'
+    | '/_authenticated/admin/applications'
     | '/_authenticated/admin/media'
+    | '/_authenticated/admin/messages'
+    | '/_authenticated/admin/reviews'
     | '/_authenticated/admin/'
     | '/_authenticated/admin/collections/$key'
     | '/_authenticated/admin/sections/$key'
@@ -181,11 +220,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/applications': {
+      id: '/_authenticated/admin/applications'
+      path: '/applications'
+      fullPath: '/admin/applications'
+      preLoaderRoute: typeof AuthenticatedAdminApplicationsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/media': {
       id: '/_authenticated/admin/media'
       path: '/media'
       fullPath: '/admin/media'
       preLoaderRoute: typeof AuthenticatedAdminMediaRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/messages': {
+      id: '/_authenticated/admin/messages'
+      path: '/messages'
+      fullPath: '/admin/messages'
+      preLoaderRoute: typeof AuthenticatedAdminMessagesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/reviews': {
+      id: '/_authenticated/admin/reviews'
+      path: '/reviews'
+      fullPath: '/admin/reviews'
+      preLoaderRoute: typeof AuthenticatedAdminReviewsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/collections/$key': {
@@ -206,14 +266,20 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminApplicationsRoute: typeof AuthenticatedAdminApplicationsRoute
   AuthenticatedAdminMediaRoute: typeof AuthenticatedAdminMediaRoute
+  AuthenticatedAdminMessagesRoute: typeof AuthenticatedAdminMessagesRoute
+  AuthenticatedAdminReviewsRoute: typeof AuthenticatedAdminReviewsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
   AuthenticatedAdminCollectionsKeyRoute: typeof AuthenticatedAdminCollectionsKeyRoute
   AuthenticatedAdminSectionsKeyRoute: typeof AuthenticatedAdminSectionsKeyRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminApplicationsRoute: AuthenticatedAdminApplicationsRoute,
   AuthenticatedAdminMediaRoute: AuthenticatedAdminMediaRoute,
+  AuthenticatedAdminMessagesRoute: AuthenticatedAdminMessagesRoute,
+  AuthenticatedAdminReviewsRoute: AuthenticatedAdminReviewsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   AuthenticatedAdminCollectionsKeyRoute: AuthenticatedAdminCollectionsKeyRoute,
   AuthenticatedAdminSectionsKeyRoute: AuthenticatedAdminSectionsKeyRoute,
