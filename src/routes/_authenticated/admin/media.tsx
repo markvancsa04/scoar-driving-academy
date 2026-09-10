@@ -2,7 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
 import { resolveMediaUrl } from "@/lib/media";
 import { useAdminExtra, useAdminT } from "@/lib/admin/i18n";
-import { deleteMedia, listMedia, updateMediaAlt, uploadMedia, type MediaRow } from "@/lib/cms/media";
+import {
+  deleteMedia,
+  listMedia,
+  updateMediaAlt,
+  uploadMedia,
+  type MediaRow,
+} from "@/lib/cms/media";
 
 export const Route = createFileRoute("/_authenticated/admin/media")({
   component: MediaLibrary,
@@ -45,9 +51,7 @@ function MediaLibrary() {
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="font-display text-2xl font-semibold">{T("mediaLibrary")}</h1>
-          <p className="text-sm text-muted-foreground">
-            {X("mediaIntro")}
-          </p>
+          <p className="text-sm text-muted-foreground">{X("mediaIntro")}</p>
         </div>
         <label className="cursor-pointer rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground">
           {busy ? T("uploading") : X("uploadPhotos")}

@@ -86,7 +86,9 @@ function MessagesPage() {
                 </div>
               </div>
 
-              <p className="mt-4 whitespace-pre-wrap text-sm text-muted-foreground">{row.message}</p>
+              <p className="mt-4 whitespace-pre-wrap text-sm text-muted-foreground">
+                {row.message}
+              </p>
 
               <div className="mt-4 flex flex-wrap gap-2">
                 <button

@@ -16,7 +16,9 @@ export function ReviewCard({ review }: { review: Testimonial }) {
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}
-            className={i < review.rating ? "h-4 w-4 fill-accent text-accent" : "h-4 w-4 text-border"}
+            className={
+              i < review.rating ? "h-4 w-4 fill-accent text-accent" : "h-4 w-4 text-border"
+            }
             aria-hidden="true"
           />
         ))}
@@ -126,9 +128,7 @@ function ReviewForm() {
                 aria-pressed={rating === i + 1}
               >
                 <Star
-                  className={
-                    i < rating ? "h-5 w-5 fill-accent text-accent" : "h-5 w-5 text-border"
-                  }
+                  className={i < rating ? "h-5 w-5 fill-accent text-accent" : "h-5 w-5 text-border"}
                   aria-hidden="true"
                 />
               </button>

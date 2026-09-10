@@ -53,7 +53,10 @@ export const adminUi = {
   },
   savedShort: { hu: "Elmentve.", ro: "Salvat." },
   loading: { hu: "Betöltés…", ro: "Se încarcă…" },
-  bothLanguages: { hu: "Töltsd ki mindkét nyelvet (HU / RO).", ro: "Completează ambele limbi (HU / RO)." },
+  bothLanguages: {
+    hu: "Töltsd ki mindkét nyelvet (HU / RO).",
+    ro: "Completează ambele limbi (HU / RO).",
+  },
   delete: { hu: "Törlés", ro: "Șterge" },
   add: { hu: "+ Hozzáadás", ro: "+ Adaugă" },
   newItem: { hu: "+ Új elem", ro: "+ Element nou" },

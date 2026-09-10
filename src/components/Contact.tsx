@@ -39,8 +39,10 @@ export function Contact() {
   const validationProps = {
     onInvalid: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       applyValidity(e.currentTarget),
-    onInput: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => applyValidity(e.currentTarget),
-    onBlur: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => applyValidity(e.currentTarget),
+    onInput: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      applyValidity(e.currentTarget),
+    onBlur: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      applyValidity(e.currentTarget),
   };
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -139,15 +141,15 @@ export function Contact() {
                 {socialLinks
                   .filter((social) => !isDeadHref(social.href))
                   .map((social) => (
-                  <ActionLink
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="grid h-10 w-10 place-items-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <Icon name={social.icon} className="h-4 w-4" aria-hidden="true" />
-                  </ActionLink>
-                ))}
+                    <ActionLink
+                      key={social.label}
+                      href={social.href}
+                      aria-label={social.label}
+                      className="grid h-10 w-10 place-items-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+                    >
+                      <Icon name={social.icon} className="h-4 w-4" aria-hidden="true" />
+                    </ActionLink>
+                  ))}
               </div>
             )}
           </div>

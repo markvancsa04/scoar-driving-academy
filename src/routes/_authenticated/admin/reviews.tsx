@@ -64,9 +64,7 @@ function ReviewsPage() {
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="font-semibold">{row.name}</p>
-                  {row.location && (
-                    <p className="text-xs text-muted-foreground">{row.location}</p>
-                  )}
+                  {row.location && <p className="text-xs text-muted-foreground">{row.location}</p>}
                   <div className="mt-1 flex gap-0.5" aria-label={`${row.rating} / 5`}>
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star

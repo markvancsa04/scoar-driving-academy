@@ -93,9 +93,7 @@ function CollectionEditor() {
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="font-display text-2xl font-semibold">{label(collectionKey)}</h1>
-          <p className="text-sm text-muted-foreground">
-            {T("listIntro")}
-          </p>
+          <p className="text-sm text-muted-foreground">{T("listIntro")}</p>
         </div>
         <button
           onClick={() => void addRow()}
@@ -126,7 +124,9 @@ function CollectionEditor() {
                       checked={row.is_active}
                       onChange={(e) =>
                         setRows((r) =>
-                          r.map((x) => (x.id === row.id ? { ...x, is_active: e.target.checked } : x)),
+                          r.map((x) =>
+                            x.id === row.id ? { ...x, is_active: e.target.checked } : x,
+                          ),
                         )
                       }
                     />
