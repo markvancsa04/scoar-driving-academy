@@ -1,4 +1,5 @@
-import { isImage, isLocalized, labelFor, type Json } from "@/lib/cms/model";
+import { isImage, isLocalized, type Json } from "@/lib/cms/model";
+import { useAdminT, useLabel } from "@/lib/admin/i18n";
 import { MediaPicker } from "./MediaPicker";
 
 interface Props {
@@ -13,7 +14,8 @@ const inputClass =
   "w-full rounded-md border border-border bg-background px-3 py-2 text-sm outline-none focus:border-accent";
 
 export function FieldEditor({ name, template, value, onChange, depth = 0 }: Props) {
-  const label = labelFor(name);
+  const T = useAdminT();
+  const label = useLabel()(name);
   const shape = value ?? template;
 
   /* ---- bilingual text ---------------------------------------------- */
@@ -109,7 +111,7 @@ export function FieldEditor({ name, template, value, onChange, depth = 0 }: Prop
                   onClick={() => onChange(items.filter((_, i) => i !== index))}
                   className="rounded border border-border px-2 py-1 text-xs text-destructive"
                 >
-                  Șterge
+                  {T("delete")}
                 </button>
               </div>
             </div>
@@ -135,7 +137,7 @@ export function FieldEditor({ name, template, value, onChange, depth = 0 }: Prop
           onClick={() => onChange([...items, emptyItem()])}
           className="rounded-md border border-border px-3 py-1.5 text-xs font-semibold"
         >
-          + Adaugă
+          {T("add")}
         </button>
       </div>
     );

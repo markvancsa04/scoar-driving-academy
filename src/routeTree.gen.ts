@@ -19,6 +19,7 @@ import { Route as AuthenticatedAdminApplicationsRouteImport } from './routes/_au
 import { Route as AuthenticatedAdminMediaRouteImport } from './routes/_authenticated/admin/media'
 import { Route as AuthenticatedAdminMessagesRouteImport } from './routes/_authenticated/admin/messages'
 import { Route as AuthenticatedAdminReviewsRouteImport } from './routes/_authenticated/admin/reviews'
+import { Route as AuthenticatedAdminVisualRouteImport } from './routes/_authenticated/admin/visual'
 import { Route as AuthenticatedAdminCollectionsKeyRouteImport } from './routes/_authenticated/admin/collections.$key'
 import { Route as AuthenticatedAdminSectionsKeyRouteImport } from './routes/_authenticated/admin/sections.$key'
 
@@ -74,6 +75,12 @@ const AuthenticatedAdminReviewsRoute =
     path: '/reviews',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminVisualRoute =
+  AuthenticatedAdminVisualRouteImport.update({
+    id: '/visual',
+    path: '/visual',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminCollectionsKeyRoute =
   AuthenticatedAdminCollectionsKeyRouteImport.update({
     id: '/collections/$key',
@@ -96,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/admin/media': typeof AuthenticatedAdminMediaRoute
   '/admin/messages': typeof AuthenticatedAdminMessagesRoute
   '/admin/reviews': typeof AuthenticatedAdminReviewsRoute
+  '/admin/visual': typeof AuthenticatedAdminVisualRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
   '/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
@@ -108,6 +116,7 @@ export interface FileRoutesByTo {
   '/admin/media': typeof AuthenticatedAdminMediaRoute
   '/admin/messages': typeof AuthenticatedAdminMessagesRoute
   '/admin/reviews': typeof AuthenticatedAdminReviewsRoute
+  '/admin/visual': typeof AuthenticatedAdminVisualRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
   '/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
@@ -123,6 +132,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/media': typeof AuthenticatedAdminMediaRoute
   '/_authenticated/admin/messages': typeof AuthenticatedAdminMessagesRoute
   '/_authenticated/admin/reviews': typeof AuthenticatedAdminReviewsRoute
+  '/_authenticated/admin/visual': typeof AuthenticatedAdminVisualRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/collections/$key': typeof AuthenticatedAdminCollectionsKeyRoute
   '/_authenticated/admin/sections/$key': typeof AuthenticatedAdminSectionsKeyRoute
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/admin/media'
     | '/admin/messages'
     | '/admin/reviews'
+    | '/admin/visual'
     | '/admin/'
     | '/admin/collections/$key'
     | '/admin/sections/$key'
@@ -150,6 +161,7 @@ export interface FileRouteTypes {
     | '/admin/media'
     | '/admin/messages'
     | '/admin/reviews'
+    | '/admin/visual'
     | '/admin'
     | '/admin/collections/$key'
     | '/admin/sections/$key'
@@ -164,6 +176,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/media'
     | '/_authenticated/admin/messages'
     | '/_authenticated/admin/reviews'
+    | '/_authenticated/admin/visual'
     | '/_authenticated/admin/'
     | '/_authenticated/admin/collections/$key'
     | '/_authenticated/admin/sections/$key'
@@ -248,6 +261,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminReviewsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/visual': {
+      id: '/_authenticated/admin/visual'
+      path: '/visual'
+      fullPath: '/admin/visual'
+      preLoaderRoute: typeof AuthenticatedAdminVisualRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/collections/$key': {
       id: '/_authenticated/admin/collections/$key'
       path: '/collections/$key'
@@ -270,6 +290,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminMediaRoute: typeof AuthenticatedAdminMediaRoute
   AuthenticatedAdminMessagesRoute: typeof AuthenticatedAdminMessagesRoute
   AuthenticatedAdminReviewsRoute: typeof AuthenticatedAdminReviewsRoute
+  AuthenticatedAdminVisualRoute: typeof AuthenticatedAdminVisualRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
   AuthenticatedAdminCollectionsKeyRoute: typeof AuthenticatedAdminCollectionsKeyRoute
   AuthenticatedAdminSectionsKeyRoute: typeof AuthenticatedAdminSectionsKeyRoute
@@ -280,6 +301,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminMediaRoute: AuthenticatedAdminMediaRoute,
   AuthenticatedAdminMessagesRoute: AuthenticatedAdminMessagesRoute,
   AuthenticatedAdminReviewsRoute: AuthenticatedAdminReviewsRoute,
+  AuthenticatedAdminVisualRoute: AuthenticatedAdminVisualRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   AuthenticatedAdminCollectionsKeyRoute: AuthenticatedAdminCollectionsKeyRoute,
   AuthenticatedAdminSectionsKeyRoute: AuthenticatedAdminSectionsKeyRoute,
