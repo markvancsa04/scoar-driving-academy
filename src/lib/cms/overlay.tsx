@@ -29,15 +29,31 @@ export function deepMerge(base: Json, patch: Json): Json {
   return patch;
 }
 
+/**
+ * True when a stored record carries no real content at all (every text is
+ * empty). Such rows are blank templates and must never replace the real
+ * website content.
+ */
+export function isBlankRecord(value: Json): boolean {
+  if (value === null || value === undefined) return true;
+  if (typeof value === "string") return value.trim() === "";
+  if (typeof value === "number" || typeof value === "boolean") return true;
+  if (Array.isArray(value)) return value.every(isBlankRecord);
+  if (isPlainObject(value)) return Object.values(value).every(isBlankRecord);
+  return true;
+}
+
 export function applyOverlay<T extends Record<string, Json>>(raw: T, snapshot?: CmsSnapshot | null): T {
   if (!snapshot) return raw;
   const out: Record<string, Json> = { ...raw };
 
   for (const [key, value] of Object.entries(snapshot.sections ?? {})) {
-    if (key in out && value) out[key] = deepMerge(out[key], value);
+    if (key in out && value && !isBlankRecord(value)) out[key] = deepMerge(out[key], value);
   }
   for (const [key, items] of Object.entries(snapshot.collections ?? {})) {
-    if (key in out && Array.isArray(items) && items.length > 0) out[key] = items;
+    if (!(key in out) || !Array.isArray(items)) continue;
+    const real = items.filter((item) => !isBlankRecord(item));
+    if (real.length > 0) out[key] = real;
   }
 
   return out as T;

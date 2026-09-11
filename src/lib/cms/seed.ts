@@ -1,6 +1,7 @@
 import { rawContent } from "@/data/content";
 import { COLLECTIONS, SECTION_KEYS, type CollectionKey } from "./model";
 import { db } from "./db";
+import { isBlankRecord } from "./overlay";
 
 /** The static items currently shown on the public website for a collection. */
 export function staticItems(key: string): unknown[] {
@@ -19,11 +20,17 @@ export async function seedCollection(key: CollectionKey): Promise<number> {
   const items = staticItems(key);
   if (items.length === 0) return 0;
 
-  const { count, error: countError } = await db
-    .from(table)
-    .select("id", { count: "exact", head: true });
-  if (countError) throw new Error(`${table}: ${countError.message}`);
-  if ((count ?? 0) > 0) return 0;
+  // Existing rows are never touched — except blank template rows, which
+  // carry no content and would otherwise hide the real website items.
+  const { data: existing, error: readError } = await db.from(table).select("id, data");
+  if (readError) throw new Error(`${table}: ${readError.message}`);
+  const rowsNow = existing ?? [];
+  const blankIds = rowsNow.filter((r: any) => isBlankRecord(r.data)).map((r: any) => r.id);
+  if (rowsNow.length > blankIds.length) return 0;
+  if (blankIds.length > 0) {
+    const { error: delError } = await db.from(table).delete().in("id", blankIds);
+    if (delError) throw new Error(`${table}: ${delError.message}`);
+  }
 
   const rows = items.map((data, index) => ({
     slug: `${key}-${index + 1}`,
