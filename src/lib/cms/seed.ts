@@ -1,6 +1,7 @@
 import { rawContent } from "@/data/content";
 import { COLLECTIONS, SECTION_KEYS, type CollectionKey } from "./model";
 import { db } from "./db";
+import { isBlankRecord } from "./overlay";
 
 /** The static items currently shown on the public website for a collection. */
 export function staticItems(key: string): unknown[] {
