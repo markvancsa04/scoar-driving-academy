@@ -16,13 +16,15 @@
  * =============================================================
  */
 
-import aboutImage from "@/assets/about.jpg";
-import instructor1 from "@/assets/instructor-1.jpg";
-import instructor2 from "@/assets/instructor-2.jpg";
-import instructor3 from "@/assets/instructor-3.jpg";
-import instructor4 from "@/assets/instructor-4.jpg";
-import instructor5 from "@/assets/instructor-5.jpg";
-import instructor6 from "@/assets/instructor-6.jpg";
+/* Stable public URLs (kept out of the bundle hash so the admin panel can
+   store and re-render exactly the same photos). */
+const aboutImage = "/images/about.jpg";
+const instructor1 = "/images/instructor-1.jpg";
+const instructor2 = "/images/instructor-2.jpg";
+const instructor3 = "/images/instructor-3.jpg";
+const instructor4 = "/images/instructor-4.jpg";
+const instructor5 = "/images/instructor-5.jpg";
+const instructor6 = "/images/instructor-6.jpg";
 
 /* Client-provided photography (CDN hosted) */
 import logoAsset from "@/assets/logo-scobar.png.asset.json";
